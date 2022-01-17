@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,12 +28,15 @@ namespace ConfigStartAs
     public partial class MainWindow : Window
     {
         private static readonly string AppDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StartAs");
+        private bool _tbExecPathEventState;
 
         public MainWindow()
         {
             InitializeComponent();
             tbExecPath.TextChanged += (sender, args) =>
             {
+                if (!_tbExecPathEventState) return;
+
                 if (!String.IsNullOrEmpty(tbExecPath.Text) && tbExecPath.Text.StartsWith("\"") &&
                     tbExecPath.Text.EndsWith("\""))
                 {
@@ -86,7 +90,9 @@ namespace ConfigStartAs
                 WorkingDirectory = tbWdir.Text,
                 AuthentFileDateCreated = DateTime.Now,
                 Username = tbUsername.Text,
-                PasswordSecured = tbPwd.Password
+                PasswordSecured = tbPwd.Password,
+                WindowStyle =  (ProcessWindowStyle)((ComboBoxItem)cbWindowStart.SelectionBoxItem).Tag
+                
             };
 
             if (!AuthentFileUtils.CryptAuthenDtoToFile(aFile, tbCryptFilePath.Text, out var error))
@@ -129,14 +135,7 @@ namespace ConfigStartAs
 
         private void AdaptUiFromAuthentFile(AuthentFile aFile)
         {
-            /*
-             *                 Filepath = execPath.FullName,
-                Arguments = tbArgs.Text,
-                WorkingDirectory = tbWdir.Text,
-                AuthentFileDateCreated = DateTime.Now,
-                Username = tbUsername.Text,
-                PasswordSecured = tbPwd.Password
-             */
+            _tbExecPathEventState = false;
 
             tbExecPath.Text = aFile.Filepath;
             tbArgs.Text = aFile.Arguments;
@@ -144,6 +143,7 @@ namespace ConfigStartAs
             tbUsername.Text = aFile.Username;
             tbPwd.Password = aFile.PasswordSecured;
 
+            _tbExecPathEventState = true;
         }
     }
 }

@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConfigStartAs"
+        xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=System"
         mc:Ignorable="d"
-        Title="MainWindow" Height="478" Width="566.4" FontSize="11" >
+        Title="MainWindow" Height="480" Width="580" FontSize="11" ResizeMode="NoResize" >
     <Grid>
         <Label Content="Chemin de l'exécutable : " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbExecPath" Height="23" Margin="155,14,89.6,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top"/>
@@ -16,9 +17,26 @@
         <Label Content="Démarrer dans : " HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbWdir" Height="23" Margin="155,70,9.6,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbWindowStart" Margin="155,98,9.6,0" VerticalAlignment="Top" Height="23">
-            <ComboBoxItem IsSelected="True">Fenêtre normale</ComboBoxItem>
-            <ComboBoxItem>Réduite</ComboBoxItem>
-            <ComboBoxItem>Agrandie</ComboBoxItem>
+            <ComboBoxItem IsSelected="True" Content="Fenêtre normale">
+                <ComboBoxItem.Tag>
+                    <diagnostics:ProcessWindowStyle>Normal</diagnostics:ProcessWindowStyle>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="Réduite">
+                <ComboBoxItem.Tag>
+                    <diagnostics:ProcessWindowStyle>Minimized</diagnostics:ProcessWindowStyle>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="Agrandie">
+                <ComboBoxItem.Tag>
+                    <diagnostics:ProcessWindowStyle>Maximized</diagnostics:ProcessWindowStyle>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="Masquée">
+                <ComboBoxItem.Tag>
+                    <diagnostics:ProcessWindowStyle>Hidden</diagnostics:ProcessWindowStyle>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
         </ComboBox>
         <Label Content="Exécuter : " HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnChangeExePath" Content="Parcourir" HorizontalAlignment="Right" Margin="0,14,9.6,0" VerticalAlignment="Top" Height="23" Width="75" Click="btnChangeExePath_Click"/>
@@ -34,6 +52,9 @@
         </GroupBox>
         <GroupBox x:Name="gpSecurity" Header="Sécurité " Height="100" Margin="10,231,10,0" VerticalAlignment="Top">
             <Grid>
+                <CheckBox x:Name="chkbHaveExpirationDate" Content="Définir une date d'expiration pour le fichier d'authentification" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <DatePicker Margin="330,5,10,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chkbSha1verif" Content="Effectuer une vérification SHA1 sur l'exécutable au lancement (peut ralentir le démarrage)" Margin="10,33,10,0" VerticalAlignment="Top"/>
 
             </Grid>
         </GroupBox>
