@@ -45,6 +45,7 @@
     <Compile Include="dto\AuthentFile.cs" />
     <Compile Include="utils\AuthentFileUtils.cs" />
     <Compile Include="utils\ClsLookupAccountName.cs" />
+    <Compile Include="utils\FileIntegrityUtils.cs" />
     <Compile Include="utils\MiscAppUtils.cs" />
     <Compile Include="utils\StringCipher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

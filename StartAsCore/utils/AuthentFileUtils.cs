@@ -14,6 +14,27 @@ namespace StartAsCore.utils
     public static class AuthentFileUtils
     {
 
+        public static bool CreateFile(AuthentFile authentFile, string authentFilepath)
+        {
+            FileInfo fi = new FileInfo(authentFile.Filepath);
+            authentFile.FilepathLength = fi.Length;
+
+            if (authentFile.IsDoSha1VerifAtStart)
+            {
+                String[] strIntegrity = FileIntegrityUtils.CalculateFileIntegrity(fi);
+               
+                authentFile.ChecksumSha1 = strIntegrity[0];
+                authentFile.ChecksumCrc32 = strIntegrity[1];
+            }
+
+            AuthentFileUtils.CryptAuthenDtoToFile(authentFile, authentFilepath);
+
+            return true;
+
+        }
+
+       
+
         public static string CryptAuthenDtoToString(AuthentFile authentFile)
         {
             XmlSerializer serializer = new XmlSerializer(authentFile.GetType());
@@ -30,19 +51,16 @@ namespace StartAsCore.utils
             return StringCipher.Encrypt(xml, MiscAppUtils.GetComputerSid().Value);
         }
 
-        public static bool CryptAuthenDtoToFile(AuthentFile authentFile, String cryptFilePath, out Exception error)
+        public static void CryptAuthenDtoToFile(AuthentFile authentFile, String cryptFilePath)
         {
             try
             {
                 String content = CryptAuthenDtoToString(authentFile);
                 File.WriteAllText(cryptFilePath, content, Encoding.UTF8);
-                error = null;
-                return true;
             }
             catch (Exception ex)
             {
-                error = ex;
-                return false;
+                throw ex;
             }
         }
 

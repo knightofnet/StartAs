@@ -48,6 +48,21 @@ namespace ConfigStartAs
                     AdaptUiAtExecFilepath(tbExecPath.Text);
                 }
             };
+
+            tbSecurityPin.IsEnabled = false;
+            tbSecurityDate.IsEnabled = false;
+            tbSecurityDate.DisplayDateStart = DateTime.Now;
+            
+
+
+            chkbPin.Click += (sender, args) =>
+            {
+                tbSecurityPin.IsEnabled = chkbPin.IsChecked ?? false;
+            };
+            chkbHaveExpirationDate.Click += (sender, args) =>
+            {
+                tbSecurityDate.IsEnabled = chkbHaveExpirationDate.IsChecked ?? false;
+            };
         }
 
         private void btnChangeExePath_Click(object sender, RoutedEventArgs e)
@@ -57,6 +72,7 @@ namespace ConfigStartAs
                 Multiselect = false,
                 Filter = "Application|*.exe|Tous les fichiers|*.*",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)
+
             };
 
             if (openFileDialog.ShowDialog() != true) return;
@@ -91,14 +107,25 @@ namespace ConfigStartAs
                 AuthentFileDateCreated = DateTime.Now,
                 Username = tbUsername.Text,
                 PasswordSecured = tbPwd.Password,
-                WindowStyle =  (ProcessWindowStyle)((ComboBoxItem)cbWindowStart.SelectionBoxItem).Tag
-                
+                WindowStyleToLaunch = (ProcessWindowStyle)((ComboBoxItem)cbWindowStart.SelectedItem).Tag,
+                IsDoSha1VerifAtStart = chkbVerif.IsChecked ?? false,
+                IsAskForPinAtStart = chkbPin.IsChecked ?? false,
+                PinStart = tbSecurityPin.Text,
+                IsHaveExpirationDate = chkbHaveExpirationDate.IsChecked ?? false,
+                ExpirationDate = tbSecurityDate.SelectedDate
             };
 
-            if (!AuthentFileUtils.CryptAuthenDtoToFile(aFile, tbCryptFilePath.Text, out var error))
+
+            try
+            {
+                AuthentFileUtils.CreateFile(aFile, tbCryptFilePath.Text);
+            } catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de la création du fichier d'authentification.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
+
+   
 
 
 
@@ -136,12 +163,23 @@ namespace ConfigStartAs
         private void AdaptUiFromAuthentFile(AuthentFile aFile)
         {
             _tbExecPathEventState = false;
+            tbSecurityPin.IsEnabled = false;
+            tbSecurityDate.IsEnabled = false;
 
             tbExecPath.Text = aFile.Filepath;
             tbArgs.Text = aFile.Arguments;
             tbWdir.Text = aFile.WorkingDirectory;
             tbUsername.Text = aFile.Username;
             tbPwd.Password = aFile.PasswordSecured;
+
+            chkbPin.IsChecked = aFile.IsAskForPinAtStart;
+            tbSecurityPin.Text = aFile.IsAskForPinAtStart ? aFile.PinStart.ToString() : string.Empty;
+            tbSecurityPin.IsEnabled = aFile.IsAskForPinAtStart;
+
+            chkbHaveExpirationDate.IsChecked = aFile.IsHaveExpirationDate;
+            tbSecurityDate.SelectedDate = aFile.IsHaveExpirationDate ? aFile.ExpirationDate : null;
+
+            chkbVerif.IsChecked = aFile.IsDoSha1VerifAtStart;
 
             _tbExecPathEventState = true;
         }

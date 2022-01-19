@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ConfigStartAs"
         xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=System"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="580" FontSize="11" ResizeMode="NoResize" >
+        Title="Config Start As" Height="480" Width="580" FontSize="11" ResizeMode="NoResize" >
     <Grid>
         <Label Content="Chemin de l'exécutable : " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbExecPath" Height="23" Margin="155,14,89.6,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top"/>
@@ -50,19 +50,25 @@
                 <PasswordBox x:Name="tbPwd" Height="23" Margin="140,43,10,0"  VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="gpSecurity" Header="Sécurité " Height="100" Margin="10,231,10,0" VerticalAlignment="Top">
+        <GroupBox x:Name="gpSecurity" Header="Sécurité " Height="105" Margin="10,231,9.6,0" VerticalAlignment="Top">
             <Grid>
                 <CheckBox x:Name="chkbHaveExpirationDate" Content="Définir une date d'expiration pour le fichier d'authentification" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <DatePicker Margin="330,5,10,0" VerticalAlignment="Top"/>
-                <CheckBox x:Name="chkbSha1verif" Content="Effectuer une vérification SHA1 sur l'exécutable au lancement (peut ralentir le démarrage)" Margin="10,33,10,0" VerticalAlignment="Top"/>
+                <DatePicker x:Name="tbSecurityDate" Margin="330,5,10,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chkbVerif" Content="Effectuer une vérification d'intégrité sur l'exécutable au lancement (peut ralentir le démarrage)" Margin="10,33,10,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chkbPin" Content="Demander un code au démarrage de l'application" Margin="10,55,216.6,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbSecurityPin" Height="23" Margin="330,52,10.4,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
             </Grid>
         </GroupBox>
+        <Grid Margin="10,341,88.6,49.4">
 
-        <Label Content="Fichier d'authentification : " HorizontalAlignment="Left" Margin="10,336,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCryptFilePath" Height="23" Margin="155,337,89,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top"/>
-        <Button x:Name="btnCreateCryptFile" Height="23" Content="Créer le fichier d'authentification" HorizontalAlignment="Left" Margin="194,365,0,0" VerticalAlignment="Top" Width="179" Click="btnCreateCryptFile_Click"/>
-        <Button x:Name="btnSaveCrptFile" Height="23" Content="Ouvrir le fichier d'authentification" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Width="179" Click="btnSaveCrptFile_Click"/>
+            <Label Content="Fichier d'authentification : " HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="tbCryptFilePath" Height="23" Margin="145,1,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top"/>
+            <Button x:Name="btnCreateCryptFile" Height="23" Content="Créer le fichier d'authentification" HorizontalAlignment="Right" Margin="0,29,0,0" VerticalAlignment="Top" Width="179" Click="btnCreateCryptFile_Click"/>
+            <Button x:Name="btnSaveCrptFile" Height="23" Content="Ouvrir..." HorizontalAlignment="Right" Margin="0,29,184,0" VerticalAlignment="Top" Width="146" Click="btnSaveCrptFile_Click"/>
+
+        </Grid>
+        <Button x:Name="btnChangeAuthfilePath" Content="Parcourir" HorizontalAlignment="Right" Margin="0,341,9.6,0" VerticalAlignment="Top" Height="23" Width="74" Click="btnChangeExePath_Click"/>
 
     </Grid>
 </Window>

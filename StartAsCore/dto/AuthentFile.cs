@@ -17,7 +17,7 @@ namespace StartAsCore.dto
 
         public string WorkingDirectory { get; set; }
 
-        public ProcessWindowStyle WindowStyle { get; set; }
+        public ProcessWindowStyle WindowStyleToLaunch { get; set; }
 
         public string Username { get; set; }
 
@@ -25,7 +25,22 @@ namespace StartAsCore.dto
 
         public DateTime AuthentFileDateCreated { get; set; }
 
+        public bool IsDoSha1VerifAtStart { get; set; }
 
+        public string ChecksumSha1 { get; set; }
 
+        public string ChecksumCrc32 { get; set; }
+
+        public bool IsAskForPinAtStart { get; set; }
+
+        public string PinStart { get; set; }
+        public long FilepathLength { get; set; }
+        public bool IsHaveExpirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
+
+        public string GetSpecialHashCode()
+        {
+            return  $"{Filepath}#{Username}#{PasswordSecured}#{PinStart}".GetHashCode().ToString();
+        }
     }
 }
