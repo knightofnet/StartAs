@@ -8,9 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-namespace ConfigStartAs.Properties
-{
+namespace ConfigStartAs.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
     /// </summary>
@@ -18,52 +19,386 @@ namespace ConfigStartAs.Properties
     // à l'aide d'un outil, tel que ResGen ou Visual Studio.
     // Pour ajouter ou supprimer un membre, modifiez votre fichier .ResX, puis réexécutez ResGen
     // avec l'option /str ou régénérez votre projet VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    public class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ConfigStartAs.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Remplace la propriété CurrentUICulture du thread actuel pour toutes
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Masquée.
+        /// </summary>
+        public static string cbWsHidden {
+            get {
+                return ResourceManager.GetString("cbWsHidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Agrandie.
+        /// </summary>
+        public static string cbWsMaximized {
+            get {
+                return ResourceManager.GetString("cbWsMaximized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fenêtre normale.
+        /// </summary>
+        public static string cbWsNormal {
+            get {
+                return ResourceManager.GetString("cbWsNormal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Réduite.
+        /// </summary>
+        public static string cbWsReduced {
+            get {
+                return ResourceManager.GetString("cbWsReduced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Arguments :.
+        /// </summary>
+        public static string lblArgs {
+            get {
+                return ResourceManager.GetString("lblArgs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Parcourir.
+        /// </summary>
+        public static string lblBtnBrowse {
+            get {
+                return ResourceManager.GetString("lblBtnBrowse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nouveau.
+        /// </summary>
+        public static string lblBtnNew {
+            get {
+                return ResourceManager.GetString("lblBtnNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ouvrir....
+        /// </summary>
+        public static string lblBtnOpenDotted {
+            get {
+                return ResourceManager.GetString("lblBtnOpenDotted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enregistrer.
+        /// </summary>
+        public static string lblBtnSave {
+            get {
+                return ResourceManager.GetString("lblBtnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Annuler.
+        /// </summary>
+        public static string lblCancel {
+            get {
+                return ResourceManager.GetString("lblCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Définir une date d&apos;expiration pour le fichier d&apos;authentification.
+        /// </summary>
+        public static string lblCbSetExpirationDate {
+            get {
+                return ResourceManager.GetString("lblCbSetExpirationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Effectuer une vérification d&apos;intégrité sur l&apos;exécutable au lancement (peut ralentir le démarrage).
+        /// </summary>
+        public static string lblCbSetVerifAtStart {
+            get {
+                return ResourceManager.GetString("lblCbSetVerifAtStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Demander un code au démarrage de l&apos;application.
+        /// </summary>
+        public static string lblCvSetPin {
+            get {
+                return ResourceManager.GetString("lblCvSetPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chemin de l&apos;exécutable :.
+        /// </summary>
+        public static string lblExecFilePath {
+            get {
+                return ResourceManager.GetString("lblExecFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fichier d&apos;authentification : .
+        /// </summary>
+        public static string lblFileAuthent {
+            get {
+                return ResourceManager.GetString("lblFileAuthent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sécurité.
+        /// </summary>
+        public static string lblGpSecurity {
+            get {
+                return ResourceManager.GetString("lblGpSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Démarrer en tant que.
+        /// </summary>
+        public static string lblGpStartAs {
+            get {
+                return ResourceManager.GetString("lblGpStartAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mot de passe :.
+        /// </summary>
+        public static string lblPassword {
+            get {
+                return ResourceManager.GetString("lblPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom d&apos;utilisateur :.
+        /// </summary>
+        public static string lblUsername {
+            get {
+                return ResourceManager.GetString("lblUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Démarrer dans : .
+        /// </summary>
+        public static string lblWdDir {
+            get {
+                return ResourceManager.GetString("lblWdDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Entrez le mot de passe.
+        /// </summary>
+        public static string lblWinPwdPrompt {
+            get {
+                return ResourceManager.GetString("lblWinPwdPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mot de passe requis pour ouvrir le fichier.
+        /// </summary>
+        public static string lblWinPwdPromptTitle {
+            get {
+                return ResourceManager.GetString("lblWinPwdPromptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Exécuter : .
+        /// </summary>
+        public static string lblWs {
+            get {
+                return ResourceManager.GetString("lblWs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Des modifications ont pu être apportées au fichier &apos;{0}&apos;. Si vous ouvrez un autre fichier, vous risquez de perdre ces modifications. Voulez-vous continuer ?.
+        /// </summary>
+        public static string msgTxtChangesPending {
+            get {
+                return ResourceManager.GetString("msgTxtChangesPending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le dossier &apos;{0}&apos; n&apos;existe pas ou n&apos;est pas accessible..
+        /// </summary>
+        public static string msgTxtDirNotExist {
+            get {
+                return ResourceManager.GetString("msgTxtDirNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur.
+        /// </summary>
+        public static string msgTxtError {
+            get {
+                return ResourceManager.GetString("msgTxtError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur lors de la création du fichier d&apos;authentification..
+        /// </summary>
+        public static string msgTxtErrorCreateAuthentFile {
+            get {
+                return ResourceManager.GetString("msgTxtErrorCreateAuthentFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pour des raisons de sécurité, le fichier CRT ne sera pas ouvert..
+        /// </summary>
+        public static string msgTxtErrorOpenAuthFileGen {
+            get {
+                return ResourceManager.GetString("msgTxtErrorOpenAuthFileGen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mot de passe incorrect. Pour des raisons de sécurité, le fichier CRT ne sera pas ouvert..
+        /// </summary>
+        public static string msgTxtErrorOpenAuthFilePwd {
+            get {
+                return ResourceManager.GetString("msgTxtErrorOpenAuthFilePwd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur lors de la lecture du fichier d&apos;authentification.
+        /// </summary>
+        public static string msgTxtErrorReadingAuthFile {
+            get {
+                return ResourceManager.GetString("msgTxtErrorReadingAuthFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le fichier &apos;{0}&apos; n&apos;existe pas ou n&apos;est pas accessible..
+        /// </summary>
+        public static string msgTxtFileNotExist {
+            get {
+                return ResourceManager.GetString("msgTxtFileNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Question.
+        /// </summary>
+        public static string msgTxtQuestion {
+            get {
+                return ResourceManager.GetString("msgTxtQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Il est nécessaire d&apos;entrer un mot de passe afin de pouvoir lire le fichier CRT..
+        /// </summary>
+        public static string msgTxtWarnNoPwd {
+            get {
+                return ResourceManager.GetString("msgTxtWarnNoPwd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fichiers d&apos;authentification|*.crt|Tous les fichiers|*.*.
+        /// </summary>
+        public static string openForAuthFileFilter {
+            get {
+                return ResourceManager.GetString("openForAuthFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Applications|*.exe|Tous les fichiers|*.*.
+        /// </summary>
+        public static string openForFilePathFilenameFilter {
+            get {
+                return ResourceManager.GetString("openForFilePathFilenameFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Aucun fichier à exécuter n&apos;a été indiqué..
+        /// </summary>
+        public static string strNoFileExec {
+            get {
+                return ResourceManager.GetString("strNoFileExec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Créer un raccourci sur le bureau.
+        /// </summary>
+        public static string txtHlinkCreateShortcut {
+            get {
+                return ResourceManager.GetString("txtHlinkCreateShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Montrer le fichier d&apos;authentification dans l&apos;explorateur.
+        /// </summary>
+        public static string txtHlinkShowFolderAuthentFileExplorer {
+            get {
+                return ResourceManager.GetString("txtHlinkShowFolderAuthentFileExplorer", resourceCulture);
             }
         }
     }

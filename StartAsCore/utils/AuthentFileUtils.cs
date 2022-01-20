@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using StartAsCore.dto;
@@ -27,7 +24,7 @@ namespace StartAsCore.utils
                 authentFile.ChecksumCrc32 = strIntegrity[1];
             }
 
-            AuthentFileUtils.CryptAuthenDtoToFile(authentFile, authentFilepath);
+            CryptAuthenDtoToFile(authentFile, authentFilepath);
 
             return true;
 

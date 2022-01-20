@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StartAsCore.utils
@@ -17,12 +15,12 @@ namespace StartAsCore.utils
 
             async Task<string> Sha1Calculate()
             {
-                return FileIntegrityUtils.GetSha1Hash(fi);
+                return GetSha1Hash(fi);
             }
 
             async Task<string> Crc32Calculate()
             {
-                return FileIntegrityUtils.GetCrc32Hash(fi);
+                return GetCrc32Hash(fi);
             }
 
             Task<string> t1 = Sha1Calculate();

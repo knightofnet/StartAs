@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
+using AryxDevLibrary.extensions;
 using AryxDevLibrary.utils;
-
+using AryxDevLibrary.utils.cliParser;
+using StartAsCore.business;
+using StartAsCore.constant;
 using StartAsCore.dto;
 using StartAsCore.utils;
 
@@ -18,31 +17,24 @@ namespace StartAsCmd
     {
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+            AppArgs appArgs = null;
+            try
             {
-                Console.WriteLine("Le premier argument doit être un fichier crt");
+                appArgs = ParseAppArgs(args);
+            }
+            catch (CliParsingException cx)
+            {
+                Console.WriteLine(cx.Message);
                 Console.WriteLine();
                 return;
             }
-
-            String certPath = null;
-            String pinStart = null;
-            if (args.Length >= 1)
-            {
-                certPath = args[0];
-            }
-            if (args.Length >= 2)
-            {
-                pinStart = args[1];
-            }
-
 
             string currentUser = Environment.UserName;
             AuthentFile aFile = null;
 
             try
             {
-                aFile = AuthentFileUtils.CryptAuthenDtoFromFile(certPath);
+                aFile = AuthentFileUtils.CryptAuthenDtoFromFile(appArgs.FilecertPath);
             }
             catch (Exception ex)
             {
@@ -53,30 +45,70 @@ namespace StartAsCmd
 
             if (aFile == null) return;
 
-            if (!VerifBeforeStart(aFile, pinStart))
+            if (!VerifBeforeStart(aFile, appArgs.SecuredPinStart))
             {
                 Console.WriteLine();
                 return;
             }
 
-            RunCert(certPath, currentUser, aFile);
+            RunCert(currentUser, aFile, appArgs);
         }
 
-
-
-        private static void RunCert(string certPath, string currentUser, AuthentFile aFile)
+        private static AppArgs ParseAppArgs(string[] args)
         {
+            AppArgs retAppArgs;
+            if (args.Length == 0)
+            {
+                throw new CliParsingException(
+                    "Il est nécessaire de démarrer l'application avec au moins un argument, le fichier d'authentification");
+            }
+
+            if (args[0].Trim().StartsWith("-"))
+            {
+                CmdArgsParser cmdArgsParser = new CmdArgsParser();
+                retAppArgs = cmdArgsParser.ParseDirect(args);
+            }
+            else
+            {
+                retAppArgs = new AppArgs
+                {
+                    FilecertPath = args[0],
+                    SecuredPinStart = args.Length >= 2 ? args[1] : null
+                };
+            }
+
+            return retAppArgs;
+        }
+
+        private static void RunCert(string currentUser, AuthentFile aFile, AppArgs appArgs)
+        {
+            string certPath = appArgs.FilecertPath;
+
             ProcessStartInfo psi;
             if (!currentUser.Equals(aFile.Username))
             {
-                string pin = aFile.IsAskForPinAtStart ? $" {StringCipher.Encrypt(aFile.PinStart, aFile.GetSpecialHashCode())}" : string.Empty;
+                StringBuilder newProcessArgs = new StringBuilder($"-{CmdArgsOptions.OptAuthentFile.ShortOpt} \"{certPath}\"");
+                if (aFile.IsAskForPinAtStart)
+                {
+                    newProcessArgs.Append(
+                        $" -{CmdArgsOptions.OptSecuredPinStart.ShortOpt} {StringCipher.Encrypt(aFile.PinStart, aFile.GetSpecialHashCode())}");
+                }
+
+                if (appArgs.WaitForApp)
+                {
+                    newProcessArgs.Append(
+                        $" -{CmdArgsOptions.OptWait.ShortOpt}");
+                }
+
                 psi = new ProcessStartInfo()
                 {
                     FileName = Assembly.GetExecutingAssembly().Location,
                     UseShellExecute = false,
-                    Arguments = $"\"{certPath}\"{pin}",
+                    Arguments = newProcessArgs.ToString(),
                     UserName = aFile.Username,
-                    PasswordInClearText = aFile.PasswordSecured
+                    Password = aFile.PasswordSecured.ToSecureString(),
+                    WindowStyle = ProcessWindowStyle.Hidden
+                    
                 };
             }
             else
@@ -88,14 +120,17 @@ namespace StartAsCmd
                     Verb = "runas",
                     WorkingDirectory = aFile.WorkingDirectory,
                     Arguments = aFile.Arguments,
-                    WindowStyle = aFile.WindowStyleToLaunch
+                    WindowStyle = aFile.WindowStyleToLaunch,
                 };
             }
 
             Process p = new Process();
             p.StartInfo = psi;
-
             p.Start();
+            if (appArgs.WaitForApp)
+            {
+                p.WaitForExit();
+            }
         }
 
         private static bool VerifBeforeStart(AuthentFile aFile, string pinStartEncrypted)
@@ -129,6 +164,17 @@ namespace StartAsCmd
                 }
             }
 
+            if (aFile.IsHaveExpirationDate)
+            {
+                if (!aFile.ExpirationDate.HasValue)
+                {
+                    throw new Exception("La date d'expiration est manquante");
+                }
+                DateTime now = DateTime.Now;
+                return (now.Date.Equals(aFile.AuthentFileDateCreated.Date) ||
+                        now.Date.IsAfter(aFile.AuthentFileDateCreated.Date))
+                       && now.IsBefore(aFile.ExpirationDate.Value);
+            }
 
 
             return true;
