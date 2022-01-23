@@ -8,19 +8,13 @@ namespace ConfigStartAs
     /// </summary>
     public partial class App : Application
     {
-
-
-
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            //base.OnStartup(e);
-
-            ConfigStartAs.Properties.Resources.Culture = new CultureInfo("en-US");
-
+            //ConfigStartAs.Properties.Resources.Culture = new CultureInfo("en-US");
+            ConfigStartAs.Properties.Resources.Culture = CultureInfo.CurrentUICulture;
+            
             MainWindow m = new MainWindow();
             m.ShowDialog();
-
-
         }
     }
 }

@@ -62,6 +62,8 @@ namespace ConfigStartAs
             {
                 tbSecurityDate.IsEnabled = chkbHaveExpirationDate.IsChecked ?? false;
             };
+
+            lblVersion.Content = String.Format(lblVersion.Content.ToString(), Assembly.GetExecutingAssembly().GetName().Version);
         }
 
         private void btnChangeExePath_Click(object sender, RoutedEventArgs e)

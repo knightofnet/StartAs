@@ -6,7 +6,7 @@
         xmlns:resx="clr-namespace:ConfigStartAs.Properties"
         xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=System"
         mc:Ignorable="d"
-        Title="Config Start As" Height="480" Width="580" FontSize="11" ResizeMode="NoResize" >
+        Title="Config Start As" Height="496" Width="580" FontSize="11" ResizeMode="NoResize" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="cdMainLeft" Width="150*"/>
@@ -69,7 +69,7 @@
 
             </Grid>
         </GroupBox>
-        <Grid Margin="0,341,-0.4,10.4" Grid.ColumnSpan="2">
+        <Grid Margin="0,341,-0.4,30.4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{Binding ElementName=cdMainLeft, Path=Width}"/>
                 <ColumnDefinition Width="{Binding ElementName=cdMainRight, Path=Width}"/>
@@ -93,6 +93,12 @@
             </Label>
 
         </Grid>
+        <StatusBar Height="25" Margin="0,0,-0.4,0.4" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="0">
+            <StatusBarItem HorizontalAlignment="Right">
+                <Label x:Name="lblVersion" Content="version {0}"  FontSize="10" Padding="0" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" />
+            </StatusBarItem>
+        </StatusBar>
+
 
     </Grid>
 </Window>

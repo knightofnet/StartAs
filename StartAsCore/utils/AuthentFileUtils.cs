@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using StartAsCore.constant;
 using StartAsCore.dto;
 
 namespace StartAsCore.utils
@@ -45,7 +46,7 @@ namespace StartAsCore.utils
                 }
             }
 
-            return StringCipher.Encrypt(xml, MiscAppUtils.GetComputerSid().Value);
+            return StringCipher.Encrypt(xml, $"{MiscAppUtils.GetComputerSid().Value}#{SpecConstant.AppSalt}" );
         }
 
         public static void CryptAuthenDtoToFile(AuthentFile authentFile, String cryptFilePath)
@@ -72,7 +73,7 @@ namespace StartAsCore.utils
             try
             {
 
-                string locContent = StringCipher.Decrypt(content, MiscAppUtils.GetComputerSid().Value);
+                string locContent = StringCipher.Decrypt(content, $"{MiscAppUtils.GetComputerSid().Value}#{SpecConstant.AppSalt}");
 
                 AuthentFile authentFile;
                 using (TextReader reader = new StringReader(locContent))

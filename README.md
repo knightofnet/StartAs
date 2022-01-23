@@ -34,7 +34,7 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 <br />
 <div align="center">
   <a href="https://github.com/knightofnet/StartAs">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="reposElements\icon.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Start App As</h3>
@@ -70,11 +70,14 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation">Installation</a></li>        
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+      <ul>
+        <li><a href="#create-an-authentification-file">Create an authentification file</a></li>
+        <li><a href="#installation">Installation</a></li>        
+      </ul>    
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -119,7 +122,7 @@ You will again be asked to enter the password for Max's session, but then this p
 
 The fact that the password is saved is a security issue: anyone can potentially get that password and thus access to a session with higher privileges. It is to prevent this that "Start As" exists.
 
-By saving the password in a file (named "authentification file", a file of type crt), in an encrypted and secure way, "Start As" allows to share this file with another user so that he can start the desired target program, without revealing the password. In the details, you will first have to create an authentication file using the 'configSaveAs' tool. Then, once this file is created, it will be necessary to pass it as a parameter of the executable "saveAs.exe".
+By saving the password in a file (named "authentification file", a file of type crt), in an encrypted and secure way, "Start As" allows to share this file with another user so that he can start the desired target program, without revealing the password. In the details, you will first have to create an authentication file using the 'configSaveAs' tool. Then, once this file is created, it will be necessary to pass it as a parameter of the executable "StartAsCmd.exe".
 
 
 ### Potential security threat
@@ -135,7 +138,6 @@ Based on this, "Start As" can make it easier to start applications as an adminis
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -155,19 +157,8 @@ To test that you have the minimum version required, you can run this Powershell 
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/knightofnet/StartAs.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+1. Download latest release [here](https://github.com/knightofnet/StartAs/releases).
+2. Extract the archive in a folder.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -176,26 +167,55 @@ To test that you have the minimum version required, you can run this Powershell 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Two executables come with the downloaded release:
+- ``StartAsCmd.exe``: this is the main executable. It is a bootstraper to start a target application using another profile; Other profile saved in an encrypted authentication file.
+- ``ConfigStartAs.exe`` : this application allows the creation of authentication file.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Create an authentification file
+
+To start an application with another profile, it is necessary to create an authentication file first. This file will contain the connection information, as well as the target application, its working path, and possibly some launch arguments. Everything is encrypted using the SID of the computer and a unique Salt.
+
+``Note: the unique salt is a constant in the . The commit version contains a default value, different from the one used for the releases.``
+
+The creation of the authentication file is done by launching the executable 'ConfigStartAs.exe'. A window opens with different text fields that must be valued:
+
+The path of the executable is the path to the file that must be launched with another profile (administrator or other). In the part "Start as", enter the user name and the password of the profile that will be used.
+
+There are some security options that can be activated:
+
+- The authentication file can have a limited validity in time. To do this, check the corresponding box and set an expiration date.
+- It is also possible to perform an integrity test of the target executable file, at the time of launching with the profile of the other user. A SHA1 comparison will then be performed. This can slow down the launch of the application, but it guarantees that the executable is the right one (and not another one, with the same name in the same folder).
+- Finally, it is possible to ask for a PIN code to start the target application. It is a code on 4 to 8 characters, only numbers. Only users with the PIN code will be able to start the target application, but still without knowing the password of the used profile.
+
+Once everything is set up, you can click on the "Save" button in the lower part of the window. This will create the authentication file at the address specified in the "Authentication file" text box.
+
+This file should be used with the 'StartAsCmd.exe' executable to start the target application.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+### Start application with authentification file
 
-<!-- ROADMAP -->
-## Roadmap
+With the authentication file, use the executable as follows to start the target application with a different profile:
 
-- [] Feature 1
-- [] Feature 2
-- [] Feature 3
-    - [] Nested Feature
+```
+StartAsCmd.exe AuthFile.crt
+```
 
-See the [open issues](https://github.com/knightofnet/StartAs/issues) for a full list of proposed features (and known issues).
+It is also possible to start with arguments named :
+
+```
+StartAsCmd.exe -f AuthFile.crt [-w]
+StartAsCmd.exe --authent-file AuthFile.crt [--wait]
+```
+
+Named arguments:
+- ``-f`` : path to authentification file. Also ``--authent-file``.
+- ``-w`` : by default, the target application is started with the saved profile without waiting for it to finish. With this setting, the end of the application is waited for.. Also ``--wait``.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- CONTRIBUTING -->
@@ -228,7 +248,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Aryx - [@wolfaryx](https://twitter.com/wolfaryx) (wolfaryx [AT] gmail [DOT] com)
 
 Project Link: [https://github.com/knightofnet/StartAs](https://github.com/knightofnet/StartAs)
 
@@ -239,9 +259,9 @@ Project Link: [https://github.com/knightofnet/StartAs](https://github.com/knight
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* Template of this README.MD file available [here](https://github.com/othneildrew/Best-README-Template).
+
+*I like to think that programming is like playing with legos: you assemble blocks to form algorithms, functions, classes. At the end, it gives a program! (... and then you just spend your time to make it even better, or you start from the beginning for another one!)*
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -261,4 +281,4 @@ Project Link: [https://github.com/knightofnet/StartAs](https://github.com/knight
 [license-url]: https://github.com/knightofnet/StartAs/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: reposElements\configStartAs_MainView.png
