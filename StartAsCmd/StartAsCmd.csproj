@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AryxDevLibrary, Version=1.0.6.263, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AryxDevLibrary.1.0.6.263\lib\net35-client\AryxDevLibrary.dll</HintPath>
@@ -69,6 +72,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Assembly.cs</LastGenOutput>
     </Content>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

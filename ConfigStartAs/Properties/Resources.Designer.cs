@@ -340,6 +340,33 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Information.
+        /// </summary>
+        public static string msgTxtInfo {
+            get {
+                return ResourceManager.GetString("msgTxtInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le fichier d&apos;authentification &apos;{0}&apos; a bien été créé. Vous pouvez ouvrir le dossier le contenant ou créer un raccourci sur le bureau..
+        /// </summary>
+        public static string msgTxtOkSavedNew {
+            get {
+                return ResourceManager.GetString("msgTxtOkSavedNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le fichier d&apos;authentification &apos;{0}&apos; a bien été sauvegardé. Vous pouvez ouvrir le dossier le contenant ou créer un raccourci sur le bureau..
+        /// </summary>
+        public static string msgTxtOkSavedNotNew {
+            get {
+                return ResourceManager.GetString("msgTxtOkSavedNotNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Question.
         /// </summary>
         public static string msgTxtQuestion {

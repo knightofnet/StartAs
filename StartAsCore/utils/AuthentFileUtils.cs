@@ -20,7 +20,7 @@ namespace StartAsCore.utils
             if (authentFile.IsDoSha1VerifAtStart)
             {
                 String[] strIntegrity = FileIntegrityUtils.CalculateFileIntegrity(fi);
-               
+
                 authentFile.ChecksumSha1 = strIntegrity[0];
                 authentFile.ChecksumCrc32 = strIntegrity[1];
             }
@@ -31,7 +31,7 @@ namespace StartAsCore.utils
 
         }
 
-       
+
 
         public static string CryptAuthenDtoToString(AuthentFile authentFile)
         {
@@ -46,7 +46,7 @@ namespace StartAsCore.utils
                 }
             }
 
-            return StringCipher.Encrypt(xml, $"{MiscAppUtils.GetComputerSid().Value}#{SpecConstant.AppSalt}" );
+            return StringCipher.Encrypt(xml, $"{MiscAppUtils.GetComputerSid().Value}#{SpecConstant.AppSalt}");
         }
 
         public static void CryptAuthenDtoToFile(AuthentFile authentFile, String cryptFilePath)
@@ -75,7 +75,7 @@ namespace StartAsCore.utils
 
                 string locContent = StringCipher.Decrypt(content, $"{MiscAppUtils.GetComputerSid().Value}#{SpecConstant.AppSalt}");
 
-                AuthentFile authentFile;
+                AuthentFile authentFile = null;
                 using (TextReader reader = new StringReader(locContent))
                 {
                     authentFile = (AuthentFile)new XmlSerializer(typeof(AuthentFile)).Deserialize(reader);

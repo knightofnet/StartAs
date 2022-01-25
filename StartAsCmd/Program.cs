@@ -6,6 +6,7 @@ using System.Text;
 using AryxDevLibrary.extensions;
 using AryxDevLibrary.utils;
 using AryxDevLibrary.utils.cliParser;
+using AryxDevLibrary.utils.logger;
 using StartAsCore.business;
 using StartAsCore.constant;
 using StartAsCore.dto;
@@ -15,43 +16,62 @@ namespace StartAsCmd
 {
     class Program
     {
+        private static Logger l = new Logger("log.log", Logger.LogLvl.DEBUG, Logger.LogLvl.DEBUG, "1Mo");
+
         static void Main(string[] args)
         {
-            AppArgs appArgs = null;
-            try
-            {
-                appArgs = ParseAppArgs(args);
-            }
-            catch (CliParsingException cx)
-            {
-                Console.WriteLine(cx.Message);
-                Console.WriteLine();
-                return;
-            }
-
-            string currentUser = Environment.UserName;
-            AuthentFile aFile = null;
 
             try
             {
-                aFile = AuthentFileUtils.CryptAuthenDtoFromFile(appArgs.FilecertPath);
+                AppArgs appArgs = null;
+                try
+                {
+                    l.Debug("ReadsArgs");
+                    appArgs = ParseAppArgs(args);
+                }
+                catch (CliParsingException cx)
+                {
+                    Console.WriteLine(cx.Message);
+                    Console.WriteLine();
+                    throw cx;
+                }
+
+                string currentUser = Environment.UserName;
+                AuthentFile aFile = null;
+
+                try
+                {
+                    l.Debug("Uncrypt");
+                    aFile = AuthentFileUtils.CryptAuthenDtoFromFile(appArgs.FilecertPath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erreur lors de la lecture du fichier crt.");
+                    Console.WriteLine();
+                    throw ex;
+                }
+
+                l.Debug($"{aFile}");
+
+                if (aFile == null) throw new Exception("Empty aFile");
+
+                if (!VerifBeforeStart(aFile, appArgs.SecuredPinStart))
+                {
+                    Console.WriteLine();
+                    l.Error("Error when verifying");
+                    throw new Exception("Error when verifying");
+                }
+
+                l.Debug("RunCert");
+                RunCert(currentUser, aFile, appArgs);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erreur lors de la lecture du fichier crt.");
-                Console.WriteLine();
-                return;
+
+                l.Error(ex.Message);
+                l.Error(ex.StackTrace);
+                Environment.Exit(1);
             }
-
-            if (aFile == null) return;
-
-            if (!VerifBeforeStart(aFile, appArgs.SecuredPinStart))
-            {
-                Console.WriteLine();
-                return;
-            }
-
-            RunCert(currentUser, aFile, appArgs);
         }
 
         private static AppArgs ParseAppArgs(string[] args)
@@ -85,7 +105,7 @@ namespace StartAsCmd
             string certPath = appArgs.FilecertPath;
 
             ProcessStartInfo psi;
-            if (!currentUser.Equals(aFile.Username))
+            if (!appArgs.RunnedWithProfile)
             {
                 StringBuilder newProcessArgs = new StringBuilder($"-{CmdArgsOptions.OptAuthentFile.ShortOpt} \"{certPath}\"");
                 if (aFile.IsAskForPinAtStart)
@@ -100,6 +120,8 @@ namespace StartAsCmd
                         $" -{CmdArgsOptions.OptWait.ShortOpt}");
                 }
 
+                newProcessArgs.Append($" -{CmdArgsOptions.OptRunnedWithProfile.ShortOpt}");
+
                 psi = new ProcessStartInfo()
                 {
                     FileName = Assembly.GetExecutingAssembly().Location,
@@ -108,8 +130,8 @@ namespace StartAsCmd
                     UserName = aFile.Username,
                     Password = aFile.PasswordSecured.ToSecureString(),
                     WindowStyle = ProcessWindowStyle.Hidden
-                    
                 };
+
             }
             else
             {
@@ -147,7 +169,7 @@ namespace StartAsCmd
 
             }
 
-            
+
             if (aFile.IsAskForPinAtStart)
             {
                 string pinInput = pinStartEncrypted == null ? null : StringCipher.Decrypt(pinStartEncrypted, aFile.GetSpecialHashCode());

@@ -210,6 +210,15 @@
   <data name="msgTxtFileNotExist" xml:space="preserve">
     <value>Le fichier '{0}' n'existe pas ou n'est pas accessible.</value>
   </data>
+  <data name="msgTxtInfo" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="msgTxtOkSavedNew" xml:space="preserve">
+    <value>Le fichier d'authentification '{0}' a bien été créé. Vous pouvez ouvrir le dossier le contenant ou créer un raccourci sur le bureau.</value>
+  </data>
+  <data name="msgTxtOkSavedNotNew" xml:space="preserve">
+    <value>Le fichier d'authentification '{0}' a bien été sauvegardé. Vous pouvez ouvrir le dossier le contenant ou créer un raccourci sur le bureau.</value>
+  </data>
   <data name="msgTxtQuestion" xml:space="preserve">
     <value>Question</value>
   </data>
