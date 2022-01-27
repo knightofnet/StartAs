@@ -143,7 +143,7 @@ namespace ConfigStartAs
                 return;
             }
 
-            FileInfo execPath = new FileInfo(tbExecPath.Text.Trim('"'));
+            FileInfo execPath = new FileInfo(tbExecPath.Text.TrimPathExt());
             if (!execPath.Exists)
             {
                 MessageBox.Show(
@@ -157,7 +157,7 @@ namespace ConfigStartAs
             {
                 Filepath = execPath.FullName,
                 Arguments = tbArgs.Text,
-                WorkingDirectory = tbWdir.Text.Trim('"'),
+                WorkingDirectory = tbWdir.Text.TrimPathExt(),
                 AuthentFileDateCreated = DateTime.Now,
                 Username = tbUsername.Text,
                 PasswordSecured = tbPwd.Password,
@@ -171,17 +171,17 @@ namespace ConfigStartAs
 
             try
             {
-                string parentDirCrtFile = Path.GetDirectoryName(tbCryptFilePath.Text.Trim('"'));
+                string parentDirCrtFile = Path.GetDirectoryName(tbCryptFilePath.Text.TrimPathExt());
                 if (_isNewFile && parentDirCrtFile != null && !Directory.Exists(parentDirCrtFile))
                 {
                     Directory.CreateDirectory(parentDirCrtFile);
                 }
-                AuthentFileUtils.CreateFile(aFile, tbCryptFilePath.Text.Trim('"'));
+                AuthentFileUtils.CreateFile(aFile, tbCryptFilePath.Text.TrimPathExt());
 
                 String msg = Properties.Resources.msgTxtOkSavedNotNew;
                 if (_isNewFile)
                 {
-                    GuiMiscUtils.MsgInfo(Properties.Resources.msgTxtOkSavedNew,
+                    GuiMiscUtils.MsgInfo(string.Format(Properties.Resources.msgTxtOkSavedNew, Path.GetFileName(tbCryptFilePath.Text) ),
                         Properties.Resources.msgTxtInfo);
                 }
 
@@ -198,7 +198,7 @@ namespace ConfigStartAs
 
         private void btnNewCrptFile_Click(object sender, RoutedEventArgs e)
         {
-            string authentFilepath = tbCryptFilePath.Text.Trim('"');
+            string authentFilepath = tbCryptFilePath.Text.TrimPathExt();
             if (!_isNewFile)
             {
                 MessageBoxResult result = MessageBox.Show(
@@ -219,7 +219,7 @@ namespace ConfigStartAs
 
         private void btnOpenCrptFile_Click(object sender, RoutedEventArgs e)
         {
-            string authentFilepath = tbCryptFilePath.Text.Trim('"');
+            string authentFilepath = tbCryptFilePath.Text.TrimPathExt();
             OpenAuthentFile(authentFilepath);
         }
 
@@ -271,7 +271,8 @@ namespace ConfigStartAs
             if (aFile == null) return;
 
             bool isCanOpenFile = true;
-            if (aFile.PasswordSecured.Any())
+
+            if (aFile.PasswordSecured.Any() && !aFile.IsTempCertfile)
             {
                 isCanOpenFile = false;
                 PasswordBoxView pwdView = new PasswordBoxView(aFile.Username);
@@ -292,6 +293,13 @@ namespace ConfigStartAs
                         Properties.Resources.msgTxtErrorOpenAuthFileGen,
                         Properties.Resources.msgTxtError);
                 }
+            }
+            else if (aFile.IsTempCertfile)
+            {
+                isCanOpenFile = false;
+                GuiMiscUtils.MsgError(
+                    "Ce fichier d'authentification est temporaire; il ne peut être édité.",
+                    Properties.Resources.msgTxtError);
             }
 
             if (isCanOpenFile)

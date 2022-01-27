@@ -47,6 +47,5 @@ namespace StartAsCore.constant
             IsHiddenInHelp = true
         };
 
-
     }
 }

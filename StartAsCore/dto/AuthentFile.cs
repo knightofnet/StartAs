@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace StartAsCore.dto
 {
@@ -33,6 +34,8 @@ namespace StartAsCore.dto
         public long FilepathLength { get; set; }
         public bool IsHaveExpirationDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
+
+        public bool IsTempCertfile { get; set; }
 
         public string GetSpecialHashCode()
         {
