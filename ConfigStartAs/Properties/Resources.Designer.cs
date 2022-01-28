@@ -61,7 +61,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Masquée.
+        ///   Recherche une chaîne localisée semblable à Hidden.
         /// </summary>
         public static string cbWsHidden {
             get {
@@ -70,7 +70,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Agrandie.
+        ///   Recherche une chaîne localisée semblable à Maximized.
         /// </summary>
         public static string cbWsMaximized {
             get {
@@ -79,7 +79,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fenêtre normale.
+        ///   Recherche une chaîne localisée semblable à Normal window.
         /// </summary>
         public static string cbWsNormal {
             get {
@@ -88,7 +88,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Réduite.
+        ///   Recherche une chaîne localisée semblable à Reduced.
         /// </summary>
         public static string cbWsReduced {
             get {
@@ -97,7 +97,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Arguments :.
+        ///   Recherche une chaîne localisée semblable à Arguments:.
         /// </summary>
         public static string lblArgs {
             get {
@@ -106,7 +106,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Parcourir.
+        ///   Recherche une chaîne localisée semblable à Browse.
         /// </summary>
         public static string lblBtnBrowse {
             get {
@@ -115,7 +115,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Nouveau.
+        ///   Recherche une chaîne localisée semblable à New.
         /// </summary>
         public static string lblBtnNew {
             get {
@@ -124,7 +124,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Ouvrir....
+        ///   Recherche une chaîne localisée semblable à Open….
         /// </summary>
         public static string lblBtnOpenDotted {
             get {
@@ -133,7 +133,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Enregistrer.
+        ///   Recherche une chaîne localisée semblable à Save.
         /// </summary>
         public static string lblBtnSave {
             get {
@@ -142,7 +142,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Annuler.
+        ///   Recherche une chaîne localisée semblable à Cancel.
         /// </summary>
         public static string lblCancel {
             get {
@@ -151,7 +151,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Définir une date d&apos;expiration pour le fichier d&apos;authentification.
+        ///   Recherche une chaîne localisée semblable à Set an expiration date for the authentication file.
         /// </summary>
         public static string lblCbSetExpirationDate {
             get {
@@ -160,7 +160,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Effectuer une vérification d&apos;intégrité sur l&apos;exécutable au lancement (peut ralentir le démarrage).
+        ///   Recherche une chaîne localisée semblable à Perform an integrity check on the executable at launch (may slow down the startup).
         /// </summary>
         public static string lblCbSetVerifAtStart {
             get {
@@ -169,7 +169,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Demander un code au démarrage de l&apos;application.
+        ///   Recherche une chaîne localisée semblable à Ask for a PIN code when starting the application.
         /// </summary>
         public static string lblCvSetPin {
             get {
@@ -178,7 +178,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Chemin de l&apos;exécutable :.
+        ///   Recherche une chaîne localisée semblable à Target:.
         /// </summary>
         public static string lblExecFilePath {
             get {
@@ -187,7 +187,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fichier d&apos;authentification : .
+        ///   Recherche une chaîne localisée semblable à Authentication file.
         /// </summary>
         public static string lblFileAuthent {
             get {
@@ -196,7 +196,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sécurité.
+        ///   Recherche une chaîne localisée semblable à Security.
         /// </summary>
         public static string lblGpSecurity {
             get {
@@ -205,7 +205,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Démarrer en tant que.
+        ///   Recherche une chaîne localisée semblable à Start as.
         /// </summary>
         public static string lblGpStartAs {
             get {
@@ -214,7 +214,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Mot de passe :.
+        ///   Recherche une chaîne localisée semblable à Password:.
         /// </summary>
         public static string lblPassword {
             get {
@@ -223,7 +223,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Nom d&apos;utilisateur :.
+        ///   Recherche une chaîne localisée semblable à Username:.
         /// </summary>
         public static string lblUsername {
             get {
@@ -232,7 +232,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Démarrer dans : .
+        ///   Recherche une chaîne localisée semblable à Start in:.
         /// </summary>
         public static string lblWdDir {
             get {
@@ -241,7 +241,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Entrez le mot de passe.
+        ///   Recherche une chaîne localisée semblable à Enter the password.
         /// </summary>
         public static string lblWinPwdPrompt {
             get {
@@ -250,7 +250,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Mot de passe requis pour ouvrir le fichier.
+        ///   Recherche une chaîne localisée semblable à Password required to open authentification file.
         /// </summary>
         public static string lblWinPwdPromptTitle {
             get {
@@ -259,7 +259,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Exécuter : .
+        ///   Recherche une chaîne localisée semblable à Run.
         /// </summary>
         public static string lblWs {
             get {
@@ -268,7 +268,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Des modifications ont pu être apportées au fichier &apos;{0}&apos;. Si vous ouvrez un autre fichier, vous risquez de perdre ces modifications. Voulez-vous continuer ?.
+        ///   Recherche une chaîne localisée semblable à Changes may have been made to file &apos;{0}&apos;. If you open another file, you may lose these changes. Do you want to continue?.
         /// </summary>
         public static string msgTxtChangesPending {
             get {
@@ -277,7 +277,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le dossier &apos;{0}&apos; n&apos;existe pas ou n&apos;est pas accessible..
+        ///   Recherche une chaîne localisée semblable à The directory &apos;{0}&apos; does not exist or is not accessible..
         /// </summary>
         public static string msgTxtDirNotExist {
             get {
@@ -286,7 +286,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Erreur.
+        ///   Recherche une chaîne localisée semblable à Error.
         /// </summary>
         public static string msgTxtError {
             get {
@@ -295,7 +295,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Erreur lors de la création du fichier d&apos;authentification..
+        ///   Recherche une chaîne localisée semblable à Error when creating the authentication file..
         /// </summary>
         public static string msgTxtErrorCreateAuthentFile {
             get {
@@ -304,7 +304,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pour des raisons de sécurité, le fichier CRT ne sera pas ouvert..
+        ///   Recherche une chaîne localisée semblable à For security reasons, the CRT file will not be opened..
         /// </summary>
         public static string msgTxtErrorOpenAuthFileGen {
             get {
@@ -313,7 +313,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Mot de passe incorrect. Pour des raisons de sécurité, le fichier CRT ne sera pas ouvert..
+        ///   Recherche une chaîne localisée semblable à Incorrect password. For security reasons, the CRT file will not be opened..
         /// </summary>
         public static string msgTxtErrorOpenAuthFilePwd {
             get {
@@ -322,7 +322,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Erreur lors de la lecture du fichier d&apos;authentification.
+        ///   Recherche une chaîne localisée semblable à Error reading authentication file.
         /// </summary>
         public static string msgTxtErrorReadingAuthFile {
             get {
@@ -331,7 +331,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le fichier &apos;{0}&apos; n&apos;existe pas ou n&apos;est pas accessible..
+        ///   Recherche une chaîne localisée semblable à The file &apos;{0}&apos; does not exist or is not accessible..
         /// </summary>
         public static string msgTxtFileNotExist {
             get {
@@ -349,7 +349,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le fichier d&apos;authentification &apos;{0}&apos; a bien été créé. Vous pouvez ouvrir le dossier le contenant ou créer un raccourci sur le bureau..
+        ///   Recherche une chaîne localisée semblable à The authentication file &apos;{0}&apos; has been created. You can open the folder containing it or create a shortcut on the desktop..
         /// </summary>
         public static string msgTxtOkSavedNew {
             get {
@@ -358,7 +358,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le fichier d&apos;authentification &apos;{0}&apos; a bien été sauvegardé. Vous pouvez ouvrir le dossier le contenant ou créer un raccourci sur le bureau..
+        ///   Recherche une chaîne localisée semblable à The authentication file &apos;{0}&apos; has been saved. You can open the folder containing it or create a shortcut on the desktop..
         /// </summary>
         public static string msgTxtOkSavedNotNew {
             get {
@@ -376,7 +376,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Il est nécessaire d&apos;entrer un mot de passe afin de pouvoir lire le fichier CRT..
+        ///   Recherche une chaîne localisée semblable à It is mandatory to enter a password in order to read the CRT file..
         /// </summary>
         public static string msgTxtWarnNoPwd {
             get {
@@ -385,7 +385,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fichiers d&apos;authentification|*.crt|Tous les fichiers|*.*.
+        ///   Recherche une chaîne localisée semblable à Authentication files|*.crt|All files|*.*.
         /// </summary>
         public static string openForAuthFileFilter {
             get {
@@ -394,7 +394,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Applications|*.exe|Tous les fichiers|*.*.
+        ///   Recherche une chaîne localisée semblable à Executables|*.exe|All files|*.*.
         /// </summary>
         public static string openForFilePathFilenameFilter {
             get {
@@ -403,7 +403,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Aucun fichier à exécuter n&apos;a été indiqué..
+        ///   Recherche une chaîne localisée semblable à No executable file has been specified..
         /// </summary>
         public static string strNoFileExec {
             get {
@@ -412,7 +412,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Créer un raccourci sur le bureau.
+        ///   Recherche une chaîne localisée semblable à Create a shortcut on the desktop.
         /// </summary>
         public static string txtHlinkCreateShortcut {
             get {
@@ -421,7 +421,7 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Montrer le fichier d&apos;authentification dans l&apos;explorateur.
+        ///   Recherche une chaîne localisée semblable à Show the authentication file in the explorer.
         /// </summary>
         public static string txtHlinkShowFolderAuthentFileExplorer {
             get {

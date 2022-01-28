@@ -272,7 +272,7 @@ namespace ConfigStartAs
 
             bool isCanOpenFile = true;
 
-            if (aFile.PasswordSecured.Any() && !aFile.IsTempCertfile)
+            if (aFile.PasswordSecured.Any() && !aFile.IsTempAuthentfile)
             {
                 isCanOpenFile = false;
                 PasswordBoxView pwdView = new PasswordBoxView(aFile.Username);
@@ -294,7 +294,7 @@ namespace ConfigStartAs
                         Properties.Resources.msgTxtError);
                 }
             }
-            else if (aFile.IsTempCertfile)
+            else if (aFile.IsTempAuthentfile)
             {
                 isCanOpenFile = false;
                 GuiMiscUtils.MsgError(

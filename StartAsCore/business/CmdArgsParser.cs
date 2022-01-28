@@ -23,7 +23,7 @@ namespace StartAsCore.business
         {
             AppArgs retAppArgs = new AppArgs();
 
-            retAppArgs.FilecertPath = GetSingleOptionValue(CmdArgsOptions.OptAuthentFile, arg);
+            retAppArgs.AuthentFilepath = GetSingleOptionValue(CmdArgsOptions.OptAuthentFile, arg);
             retAppArgs.WaitForApp = HasOption(CmdArgsOptions.OptWait, arg);
             retAppArgs.RunnedWithProfile = HasOption(CmdArgsOptions.OptRunnedWithProfile, arg);
 

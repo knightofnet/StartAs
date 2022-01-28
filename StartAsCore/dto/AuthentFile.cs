@@ -35,7 +35,7 @@ namespace StartAsCore.dto
         public bool IsHaveExpirationDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
 
-        public bool IsTempCertfile { get; set; }
+        public bool IsTempAuthentfile { get; set; }
 
         public string GetSpecialHashCode()
         {
