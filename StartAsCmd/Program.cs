@@ -160,7 +160,7 @@ namespace StartAsCmd
             {
                 FileInfo fAuthentTemp = new FileInfo(appArgs.TmpAuthentFilepath);
                 fAuthentTemp.Delete();
-            }
+            } 
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace StartAsCmd
             StringBuilder newProcessArgs = new StringBuilder($"{ArgChar}{CmdArgsOptions.OptAuthentFile.ShortOpt} \"{tmpAuthentFilepath}\"");
             // Adding the new, temporary, Pin 
             newProcessArgs.Append(
-                $" -{CmdArgsOptions.OptSecuredPinStart.ShortOpt} {StringCipher.Encrypt(aFile.PinStart, aFile.GetSpecialHashCode())}");
+                $" {ArgChar}{CmdArgsOptions.OptSecuredPinStart.ShortOpt} {StringCipher.Encrypt(aFile.PinStart, aFile.GetSpecialHashCode())}");
 
             // if user ask for wait option, we transmit it
             if (appArgs.WaitForApp)

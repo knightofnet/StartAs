@@ -51,7 +51,7 @@ namespace ConfigStartAs.utils
                 ShellLinkObject lnk = (ShellLinkObject)itm.GetLink;
                 // Set the .lnk file properties
                 lnk.Path = ShortcutTarget.FullName;
-                lnk.Description = "";
+                lnk.Description = string.Empty;
                 lnk.Arguments = Args;
                 lnk.WorkingDirectory = Path.GetDirectoryName(ShortcutTarget.FullName);
                 lnk.SetIconLocation(IconFile, 0);

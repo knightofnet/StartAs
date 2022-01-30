@@ -79,6 +79,15 @@ namespace StartAsCmd.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} launched with StartAsApp..
+        /// </summary>
+        internal static string msgEventLogStart {
+            get {
+                return ResourceManager.GetString("msgEventLogStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Error when reading the CRT authentication file..
         /// </summary>
         internal static string msgExErrorReadingAuthentFile {

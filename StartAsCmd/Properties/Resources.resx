@@ -123,6 +123,9 @@
   <data name="msgEnterPinToStart" xml:space="preserve">
     <value>Enter the PIN to start the file:</value>
   </data>
+  <data name="msgEventLogStart" xml:space="preserve">
+    <value>{0} launched with StartAsApp.</value>
+  </data>
   <data name="msgExErrorReadingAuthentFile" xml:space="preserve">
     <value>Error when reading the CRT authentication file.</value>
   </data>

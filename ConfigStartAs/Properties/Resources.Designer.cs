@@ -142,6 +142,15 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Verify.
+        /// </summary>
+        public static string lblBtnVerify {
+            get {
+                return ResourceManager.GetString("lblBtnVerify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Cancel.
         /// </summary>
         public static string lblCancel {

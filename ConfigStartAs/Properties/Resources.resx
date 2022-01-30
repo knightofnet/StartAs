@@ -144,6 +144,9 @@
   <data name="lblBtnSave" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="lblBtnVerify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
   <data name="lblCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>

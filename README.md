@@ -175,7 +175,7 @@ Two executables come with the downloaded release:
 
 To start an application with another profile, it is necessary to create an authentication file first. This file will contain the connection information, as well as the target application, its working path, and possibly some launch arguments. Everything is encrypted using the SID of the computer and a unique Salt.
 
-``Note: the unique salt is a constant in the . The commit version contains a default value, different from the one used for the releases.``
+``Note: the unique salt is a constant in the ``SpecConstant.cs``. The commit version contains a default value, different from the one used for the releases.``
 
 The creation of the authentication file is done by launching the executable 'ConfigStartAs.exe'. A window opens with different text fields that must be valued:
 
