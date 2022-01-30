@@ -131,6 +131,8 @@ Read this article for more details : [Protect your computer with this one simple
 
 Based on this, "Start As" can make it easier to start applications as an administrator. Using a web browser can be risky in these conditions: viruses, malware or other security risks are more likely to corrupt the use of your computer. Preferably run browsers with a limited account.
 
+StartAs can be a useful program, but it will still be a break in security. **Use it with care and responsibility**.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
