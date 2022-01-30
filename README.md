@@ -88,7 +88,7 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Tux, the Linux mascot](/reposElements/configStartAs_MainView.png)
 
 "Start As" is an application for Windows designed to allow launching applications as another profile with administrator privileges from a standard account. For this purpose, the credentials of the administrator account are saved in an encrypted file.
 
