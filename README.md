@@ -45,8 +45,6 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
     <a href="https://github.com/knightofnet/StartAs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/knightofnet/StartAs">View Demo</a>
-    ·
     <a href="https://github.com/knightofnet/StartAs/issues">Report Bug</a>
     ·
     <a href="https://github.com/knightofnet/StartAs/issues">Request Feature</a>
@@ -175,7 +173,7 @@ Two executables come with the downloaded release:
 
 To start an application with another profile, it is necessary to create an authentication file first. This file will contain the connection information, as well as the target application, its working path, and possibly some launch arguments. Everything is encrypted using the SID of the computer and a unique Salt.
 
-``Note: the unique salt is a constant in the ``SpecConstant.cs``. The commit version contains a default value, different from the one used for the releases.``
+***Note: the unique salt is a constant in the ``SpecConstant.cs``. The commit version contains a default value, different from the one used for the releases.***
 
 The creation of the authentication file is done by launching the executable 'ConfigStartAs.exe'. A window opens with different text fields that must be valued:
 
@@ -239,7 +237,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the  GPL-3.0 License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
