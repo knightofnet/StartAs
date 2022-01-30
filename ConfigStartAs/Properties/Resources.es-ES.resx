@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cbWsHidden" xml:space="preserve">
+    <value>Oculto</value>
+  </data>
+  <data name="cbWsMaximized" xml:space="preserve">
+    <value>Maximizada</value>
+  </data>
+  <data name="cbWsNormal" xml:space="preserve">
+    <value>Ventana normal</value>
+  </data>
+  <data name="cbWsReduced" xml:space="preserve">
+    <value>Reducida</value>
+  </data>
+  <data name="lblArgs" xml:space="preserve">
+    <value>Argumentos:</value>
+  </data>
+  <data name="lblBtnBrowse" xml:space="preserve">
+    <value>Buscar en</value>
+  </data>
+  <data name="lblBtnNew" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="lblBtnOpenDotted" xml:space="preserve">
+    <value>Abrir…</value>
+  </data>
+  <data name="lblBtnSave" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="lblBtnVerify" xml:space="preserve">
+    <value>Verifique</value>
+  </data>
+  <data name="lblCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="lblCbSetExpirationDate" xml:space="preserve">
+    <value>Definir una fecha de caducidad para el archivo de autenticación</value>
+  </data>
+  <data name="lblCbSetVerifAtStart" xml:space="preserve">
+    <value>Realizar una comprobación de la integridad del ejecutable al iniciarse (puede ralentizar el inicio)</value>
+  </data>
+  <data name="lblCvSetPin" xml:space="preserve">
+    <value>Pedir un código PIN al iniciar la aplicación</value>
+  </data>
+  <data name="lblExecFilePath" xml:space="preserve">
+    <value>Destino:</value>
+  </data>
+  <data name="lblFileAuthent" xml:space="preserve">
+    <value>Archivo de autenticación</value>
+  </data>
+  <data name="lblGpSecurity" xml:space="preserve">
+    <value>Seguridad</value>
+  </data>
+  <data name="lblGpStartAs" xml:space="preserve">
+    <value>Iniciar como</value>
+  </data>
+  <data name="lblPassword" xml:space="preserve">
+    <value>Contraseña:</value>
+  </data>
+  <data name="lblUsername" xml:space="preserve">
+    <value>Usuario:</value>
+  </data>
+  <data name="lblWdDir" xml:space="preserve">
+    <value>Inciar en:</value>
+  </data>
+  <data name="lblWinPwdPrompt" xml:space="preserve">
+    <value>Introduzca la contraseña</value>
+  </data>
+  <data name="lblWinPwdPromptTitle" xml:space="preserve">
+    <value>Se requiere la contraseña para abrir el archivo de autentificación</value>
+  </data>
+  <data name="lblWs" xml:space="preserve">
+    <value>Ejecutar:</value>
+  </data>
+  <data name="msgTxtChangesPending" xml:space="preserve">
+    <value>Es posible que se hayan realizado cambios en el archivo '{0}'. Si abre otro archivo, puede perder estos cambios. ¿Desea continuar?</value>
+  </data>
+  <data name="msgTxtDirNotExist" xml:space="preserve">
+    <value>El directorio '{0}' no existe o no es accesible.</value>
+  </data>
+  <data name="msgTxtError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="msgTxtErrorCreateAuthentFile" xml:space="preserve">
+    <value>Error al crear el archivo de autenticación.</value>
+  </data>
+  <data name="msgTxtErrorOpenAuthFileGen" xml:space="preserve">
+    <value>Por razones de seguridad, el archivo CRT no se abrirá.</value>
+  </data>
+  <data name="msgTxtErrorOpenAuthFilePwd" xml:space="preserve">
+    <value>Contraseña incorrecta. Por razones de seguridad, el archivo CRT no se abrirá.</value>
+  </data>
+  <data name="msgTxtErrorReadingAuthFile" xml:space="preserve">
+    <value>Error al leer el archivo de autenticación</value>
+  </data>
+  <data name="msgTxtFileNotExist" xml:space="preserve">
+    <value>El archivo '{0}' no existe o no es accesible.</value>
+  </data>
+  <data name="msgTxtInfo" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="msgTxtOkSavedNew" xml:space="preserve">
+    <value>Se ha creado el archivo de autentificación '{0}'. Puede abrir la carpeta que lo contiene o crear un acceso directo en el escritorio.</value>
+  </data>
+  <data name="msgTxtOkSavedNotNew" xml:space="preserve">
+    <value>El archivo de autenticación '{0}' ha sido guardado. Puede abrir la carpeta que lo contiene o crear un acceso directo en el escritorio.</value>
+  </data>
+  <data name="msgTxtQuestion" xml:space="preserve">
+    <value>Pregunta</value>
+  </data>
+  <data name="msgTxtWarnNoPwd" xml:space="preserve">
+    <value>Es obligatorio introducir la contraseña para poder leer el fichero CRT.</value>
+  </data>
+  <data name="openForAuthFileFilter" xml:space="preserve">
+    <value>Archivos de autenticación|*.crt|Todos los archivos|*.*</value>
+  </data>
+  <data name="openForFilePathFilenameFilter" xml:space="preserve">
+    <value>Ejecutables|*.exe|Todos los archivos|*.*</value>
+  </data>
+  <data name="strNoFileExec" xml:space="preserve">
+    <value>No se ha especificado ningún archivo ejecutable.</value>
+  </data>
+  <data name="txtHlinkCreateShortcut" xml:space="preserve">
+    <value>Crear un acceso directo</value>
+  </data>
+  <data name="txtHlinkShowFolderAuthentFileExplorer" xml:space="preserve">
+    <value>Mostrar el archivo de autenticación en el explorador</value>
+  </data>
+</root>
