@@ -7,64 +7,70 @@
         xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=System"
         mc:Ignorable="d"
         Title="Config Start As" Height="496" Width="580" FontSize="11" ResizeMode="NoResize" >
-    <Grid>
+    <Grid x:Name="gridMain">
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="cdMainLeft" Width="150*"/>
             <ColumnDefinition x:Name="cdMainRight" Width="422*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="{x:Static  resx:Resources.lblExecFilePath}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static resx:Resources.lblExecFilePath}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbExecPath" Height="23" Margin="31.8,14,89.6,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button x:Name="btnChangeExePath" Content="{x:Static resx:Resources.lblBtnBrowse}" HorizontalAlignment="Right" Margin="0,14,9.6,0" VerticalAlignment="Top" Height="23" Width="75" Click="btnChangeExePath_Click" Grid.Column="1"/>
+
         <Border HorizontalAlignment="Left" Height="22" Margin="5,15,0,0" VerticalAlignment="Top" Width="22" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Grid.Column="1">
             <Image x:Name="exeIcon" />
         </Border>
 
-
-
-        <Label Content="{x:Static  resx:Resources.lblArgs}" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static resx:Resources.lblArgs}" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbArgs" Height="23" Margin="5,42,9.6,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Grid.Column="1"/>
 
-        <Label Content="{x:Static  resx:Resources.lblWdDir}" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static resx:Resources.lblWdDir}" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbWdir" Height="23" Margin="5,70,9.6,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Grid.Column="1"/>
+
+        <Label Content="{x:Static resx:Resources.lblWs}" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbWindowStart" Margin="5,98,9.6,0" VerticalAlignment="Top" Height="23" Grid.Column="1">
-            <ComboBoxItem IsSelected="True" Content="{x:Static  resx:Resources.cbWsNormal}">
+            <ComboBoxItem IsSelected="True" Content="{x:Static resx:Resources.cbWsNormal}">
                 <ComboBoxItem.Tag>
                     <diagnostics:ProcessWindowStyle>Normal</diagnostics:ProcessWindowStyle>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="{x:Static  resx:Resources.cbWsReduced}">
+            <ComboBoxItem Content="{x:Static resx:Resources.cbWsReduced}">
                 <ComboBoxItem.Tag>
                     <diagnostics:ProcessWindowStyle>Minimized</diagnostics:ProcessWindowStyle>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="{x:Static  resx:Resources.cbWsMaximized}">
+            <ComboBoxItem Content="{x:Static resx:Resources.cbWsMaximized}">
                 <ComboBoxItem.Tag>
                     <diagnostics:ProcessWindowStyle>Maximized</diagnostics:ProcessWindowStyle>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="{x:Static  resx:Resources.cbWsHidden}">
+            <ComboBoxItem Content="{x:Static resx:Resources.cbWsHidden}">
                 <ComboBoxItem.Tag>
                     <diagnostics:ProcessWindowStyle>Hidden</diagnostics:ProcessWindowStyle>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
         </ComboBox>
-        <Label Content="{x:Static  resx:Resources.lblWs}" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnChangeExePath" Content="{x:Static  resx:Resources.lblBtnBrowse}" HorizontalAlignment="Right" Margin="0,14,9.6,0" VerticalAlignment="Top" Height="23" Width="75" Click="btnChangeExePath_Click" Grid.Column="1"/>
 
-        <GroupBox x:Name="gpStartAs" Header="{x:Static  resx:Resources.lblGpStartAs}" Height="100" Margin="10,126,9.6,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+        <GroupBox x:Name="gpStartAs" Header="{x:Static resx:Resources.lblGpStartAs}" Height="100" Margin="10,126,9.6,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <Grid>
-                <Label  Content="{x:Static  resx:Resources.lblUsername}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbUsername" Height="23" Margin="140,14,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+                <Label  Content="{x:Static resx:Resources.lblUsername}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbUsername" Height="23" Margin="140,14,90.4,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
-                <Label  Content="{x:Static  resx:Resources.lblPassword}" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btnVerifyUser" Content="{x:Static resx:Resources.lblGpStartAs}" HorizontalAlignment="Right" Margin="0,14,10.4,0" VerticalAlignment="Top" Width="75" Height="23" Click="btnVerifyUser_Click"/>
+
+
+                <Label  Content="{x:Static resx:Resources.lblPassword}" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
                 <PasswordBox x:Name="tbPwd" Height="23" Margin="140,43,10,0"  VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="gpSecurity" Header="{x:Static  resx:Resources.lblGpSecurity}" Height="105" Margin="10,231,9.6,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+
+        <GroupBox x:Name="gpSecurity" Header="{x:Static resx:Resources.lblGpSecurity}" Height="105" Margin="10,231,9.6,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <Grid>
-                <CheckBox x:Name="chkbHaveExpirationDate" Content="{x:Static  resx:Resources.lblCbSetExpirationDate}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chkbHaveExpirationDate" Content="{x:Static resx:Resources.lblCbSetExpirationDate}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <DatePicker x:Name="tbSecurityDate" Margin="330,5,10.4,0" VerticalAlignment="Top"/>
-                <CheckBox x:Name="chkbVerif" Content="{x:Static  resx:Resources.lblCbSetVerifAtStart}" Margin="10,33,10,0" VerticalAlignment="Top"/>
-                <CheckBox x:Name="chkbPin" Content="{x:Static  resx:Resources.lblCvSetPin}" Margin="10,55,216.6,0" VerticalAlignment="Top"/>
+                
+                <CheckBox x:Name="chkbVerif" Content="{x:Static resx:Resources.lblCbSetVerifAtStart}" Margin="10,33,10,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chkbPin" Content="{x:Static resx:Resources.lblCvSetPin}" Margin="10,55,216.6,0" VerticalAlignment="Top"/>
+                
                 <TextBox x:Name="tbSecurityPin" Height="23" Margin="330,52,10.4,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
             </Grid>
@@ -75,22 +81,25 @@
                 <ColumnDefinition Width="{Binding ElementName=cdMainRight, Path=Width}"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="{x:Static  resx:Resources.lblFileAuthent}" VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" Width="140"/>
+            <Label Content="{x:Static resx:Resources.lblFileAuthent}" VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" Width="140"/>
             <TextBox x:Name="tbCryptFilePath" Height="23" Margin="4.6,1,9.6,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Grid.Column="1"/>
-            <Button x:Name="btnNewCrptFile" Height="23" Content="{x:Static  resx:Resources.lblBtnNew}" Margin="5,29,0,0" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="56" Click="btnNewCrptFile_Click"/>
-            <Button x:Name="btnOpenCrptFile" Height="23" Content="{x:Static  resx:Resources.lblBtnOpenDotted}" HorizontalAlignment="Left" Margin="65.6,29,0,0" VerticalAlignment="Top" Width="56" Click="btnOpenCrptFile_Click" Grid.Column="1"/>
-            <Button x:Name="btnCreateCryptFile" Height="23" Content="{x:Static  resx:Resources.lblBtnSave}" HorizontalAlignment="Right" Margin="0,29,9.6,0" VerticalAlignment="Top" Width="74" Click="btnCreateCryptFile_Click" Grid.Column="1"/>
+            <Button x:Name="btnNewCrptFile" Height="23" Content="{x:Static resx:Resources.lblBtnNew}" Margin="5,29,0,0" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="56" Click="btnNewCrptFile_Click"/>
+            <Button x:Name="btnOpenCrptFile" Height="23" Content="{x:Static resx:Resources.lblBtnOpenDotted}" HorizontalAlignment="Left" Margin="65.6,29,0,0" VerticalAlignment="Top" Width="56" Click="btnOpenCrptFile_Click" Grid.Column="1"/>
+            <Button x:Name="btnCreateCryptFile" Height="23" Content="{x:Static resx:Resources.lblBtnSave}" HorizontalAlignment="Right" Margin="0,29,9.6,0" VerticalAlignment="Top" Width="74" Click="btnCreateCryptFile_Click" Grid.Column="1"/>
+            <Grid x:Name="gridAuthentLinks" Grid.ColumnSpan="2" Grid.Column="0" Margin="10,57,10.6,0">
 
-            <Label Margin="10,0,0,10" Height="25" VerticalAlignment="Bottom" FontSize="11" Padding="3,3,3,3" HorizontalAlignment="Left" Width="275" Grid.ColumnSpan="2" HorizontalContentAlignment="Center">
-                <Hyperlink x:Name="hlinkOpenFolderCrt" >
-                    <Run Text="{x:Static  resx:Resources.txtHlinkShowFolderAuthentFileExplorer}"/>
-                </Hyperlink>
-            </Label>
-            <Label Margin="139.6,0,10.6,10" Height="25" VerticalAlignment="Bottom" FontSize="11" Padding="3,3,3,3" HorizontalContentAlignment="Center" Grid.Column="1">
-                <Hyperlink x:Name="hlinkCreateShortcut" Click="hlinkCreateShortcut_Click" >
-                    <Run Text="{x:Static  resx:Resources.txtHlinkCreateShortcut}"/>
-                </Hyperlink>
-            </Label>
+                <Label Margin="0,0,0,0" Height="25" VerticalAlignment="Bottom" FontSize="11" Padding="3,3,3,3" HorizontalAlignment="Left" Width="275" HorizontalContentAlignment="Center">
+                    <Hyperlink x:Name="hlinkOpenFolderCrt" Click="hlinkOpenFolderCrt_Click" >
+                        <Run Text="{x:Static resx:Resources.txtHlinkShowFolderAuthentFileExplorer}"/>
+                    </Hyperlink>
+                </Label>
+                <Label Margin="280,0,0,0" Height="25" VerticalAlignment="Bottom" FontSize="11" Padding="3,3,3,3" HorizontalContentAlignment="Center">
+                    <Hyperlink x:Name="hlinkCreateShortcut" Click="hlinkCreateShortcut_Click" >
+                        <Run Text="{x:Static resx:Resources.txtHlinkCreateShortcut}"/>
+                    </Hyperlink>
+                </Label>
+
+            </Grid>
 
         </Grid>
         <StatusBar Height="25" Margin="0,0,-0.4,0.4" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="0">

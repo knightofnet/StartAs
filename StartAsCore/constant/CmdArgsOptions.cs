@@ -28,13 +28,24 @@ namespace StartAsCore.constant
         {
             ShortOpt = "p",
             LongOpt = "secured-pin-start",
-            Description = "Pin to start (secured one, used to relaunch app)",
+            Description = "Pin code to start (secured one, used to relaunch app)",
             HasArgs = true,
             Name = "OptSecuredPinStart",
-            IsMandatory = false
+            IsMandatory = false,
+            IsHiddenInHelp = true
+
         };
 
+        public static readonly Option OptRunnedWithProfile = new Option()
+        {
+            ShortOpt = "r",
+            LongOpt = "run-with-profile",
+            Description = "run authentification file with other profile",
+            HasArgs = false,
+            Name = "OptRunnedWithProfile",
+            IsMandatory = false,
+            IsHiddenInHelp = true
+        };
 
-        
     }
 }

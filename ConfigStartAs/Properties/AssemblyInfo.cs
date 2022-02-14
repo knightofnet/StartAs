@@ -6,11 +6,11 @@ using System.Windows;
 // l'ensemble d'attributs suivant. Pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("ConfigStartAs")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Allows the creation of an authentication file, which can then be used with 'StartAsCmd.exe")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("WolfAryx informatique")]
 [assembly: AssemblyProduct("ConfigStartAs")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright © 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

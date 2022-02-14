@@ -45,8 +45,6 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
     <a href="https://github.com/knightofnet/StartAs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/knightofnet/StartAs">View Demo</a>
-    ·
     <a href="https://github.com/knightofnet/StartAs/issues">Report Bug</a>
     ·
     <a href="https://github.com/knightofnet/StartAs/issues">Request Feature</a>
@@ -90,7 +88,7 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Tux, the Linux mascot](/reposElements/configStartAs_MainView.png)
 
 "Start As" is an application for Windows designed to allow launching applications as another profile with administrator privileges from a standard account. For this purpose, the credentials of the administrator account are saved in an encrypted file.
 
@@ -132,6 +130,8 @@ For security reasons, it is important that regular Windows users use a session w
 Read this article for more details : [Protect your computer with this one simple trick, TomsGuide.com, Paul Wagenseil, published March 20, 2019](https://www.tomsguide.com/us/limited-account-benefits,news-25682.html).
 
 Based on this, "Start As" can make it easier to start applications as an administrator. Using a web browser can be risky in these conditions: viruses, malware or other security risks are more likely to corrupt the use of your computer. Preferably run browsers with a limited account.
+
+StartAs can be a useful program, but it will still be a break in security. **Use it with care and responsibility**.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -176,7 +176,7 @@ Two executables come with the downloaded release:
 
 To start an application with another profile, it is necessary to create an authentication file first. This file will contain the connection information, as well as the target application, its working path, and possibly some launch arguments. Everything is encrypted using the SID of the computer and a unique Salt.
 
-``Note: the unique salt is a constant in the . The commit version contains a default value, different from the one used for the releases.``
+***Note: the unique salt is a constant in the ``SpecConstant.cs``. The commit version contains a default value, different from the one used for the releases.***
 
 The creation of the authentication file is done by launching the executable 'ConfigStartAs.exe'. A window opens with different text fields that must be valued:
 
@@ -240,7 +240,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the  GPL-3.0 License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

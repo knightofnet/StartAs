@@ -118,129 +118,129 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cbWsHidden" xml:space="preserve">
-    <value>Hidden</value>
+    <value>Masquée</value>
   </data>
   <data name="cbWsMaximized" xml:space="preserve">
-    <value>Maximized</value>
+    <value>Agrandie</value>
   </data>
   <data name="cbWsNormal" xml:space="preserve">
-    <value>Normal window</value>
+    <value>Fenêtre normale</value>
   </data>
   <data name="cbWsReduced" xml:space="preserve">
-    <value>Reduced</value>
+    <value>Réduite</value>
   </data>
   <data name="lblArgs" xml:space="preserve">
-    <value>Arguments:</value>
+    <value>Arguments :</value>
   </data>
   <data name="lblBtnBrowse" xml:space="preserve">
-    <value>Browse</value>
+    <value>Parcourir</value>
   </data>
   <data name="lblBtnNew" xml:space="preserve">
-    <value>New</value>
+    <value>Nouveau</value>
   </data>
   <data name="lblBtnOpenDotted" xml:space="preserve">
-    <value>Open…</value>
+    <value>Ouvrir...</value>
   </data>
   <data name="lblBtnSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Enregistrer</value>
   </data>
   <data name="lblBtnVerify" xml:space="preserve">
-    <value>Verify</value>
+    <value>Vérifier</value>
   </data>
   <data name="lblCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="lblCbSetExpirationDate" xml:space="preserve">
-    <value>Set an expiration date for the authentication file</value>
+    <value>Définir une date d'expiration pour le fichier d'authentification</value>
   </data>
   <data name="lblCbSetVerifAtStart" xml:space="preserve">
-    <value>Perform an integrity check on the executable at launch (may slow down the startup)</value>
+    <value>Effectuer une vérification d'intégrité sur l'exécutable au lancement (peut ralentir le démarrage)</value>
   </data>
   <data name="lblCvSetPin" xml:space="preserve">
-    <value>Ask for a PIN code when starting the application</value>
+    <value>Demander un code au démarrage de l'application</value>
   </data>
   <data name="lblExecFilePath" xml:space="preserve">
-    <value>Target:</value>
+    <value>Chemin de l'exécutable :</value>
   </data>
   <data name="lblFileAuthent" xml:space="preserve">
-    <value>Authentication file</value>
+    <value>Fichier d'authentification : </value>
   </data>
   <data name="lblGpSecurity" xml:space="preserve">
-    <value>Security</value>
+    <value>Sécurité</value>
   </data>
   <data name="lblGpStartAs" xml:space="preserve">
-    <value>Start as</value>
+    <value>Démarrer en tant que</value>
   </data>
   <data name="lblPassword" xml:space="preserve">
-    <value>Password:</value>
+    <value>Mot de passe :</value>
   </data>
   <data name="lblUsername" xml:space="preserve">
-    <value>Username:</value>
+    <value>Nom d'utilisateur :</value>
   </data>
   <data name="lblWdDir" xml:space="preserve">
-    <value>Start in:</value>
+    <value>Démarrer dans : </value>
   </data>
   <data name="lblWinPwdPrompt" xml:space="preserve">
-    <value>Enter the password</value>
+    <value>Entrez le mot de passe</value>
   </data>
   <data name="lblWinPwdPromptTitle" xml:space="preserve">
-    <value>Password required to open authentification file</value>
+    <value>Mot de passe requis pour ouvrir le fichier</value>
   </data>
   <data name="lblWs" xml:space="preserve">
-    <value>Run</value>
+    <value>Exécuter : </value>
   </data>
   <data name="msgTxtChangesPending" xml:space="preserve">
-    <value>Changes may have been made to file '{0}'. If you open another file, you may lose these changes. Do you want to continue?</value>
+    <value>Des modifications ont pu être apportées au fichier '{0}'. Si vous ouvrez un autre fichier, vous risquez de perdre ces modifications. Voulez-vous continuer ?</value>
   </data>
   <data name="msgTxtDirNotExist" xml:space="preserve">
-    <value>The directory '{0}' does not exist or is not accessible.</value>
+    <value>Le dossier '{0}' n'existe pas ou n'est pas accessible.</value>
   </data>
   <data name="msgTxtError" xml:space="preserve">
-    <value>Error</value>
+    <value>Erreur</value>
   </data>
   <data name="msgTxtErrorCreateAuthentFile" xml:space="preserve">
-    <value>Error when creating the authentication file.</value>
+    <value>Erreur lors de la création du fichier d'authentification.</value>
   </data>
   <data name="msgTxtErrorOpenAuthFileGen" xml:space="preserve">
-    <value>For security reasons, the CRT file will not be opened.</value>
+    <value>Pour des raisons de sécurité, le fichier CRT ne sera pas ouvert.</value>
   </data>
   <data name="msgTxtErrorOpenAuthFilePwd" xml:space="preserve">
-    <value>Incorrect password. For security reasons, the CRT file will not be opened.</value>
+    <value>Mot de passe incorrect. Pour des raisons de sécurité, le fichier CRT ne sera pas ouvert.</value>
   </data>
   <data name="msgTxtErrorReadingAuthFile" xml:space="preserve">
-    <value>Error reading authentication file</value>
+    <value>Erreur lors de la lecture du fichier d'authentification</value>
   </data>
   <data name="msgTxtFileNotExist" xml:space="preserve">
-    <value>The file '{0}' does not exist or is not accessible.</value>
+    <value>Le fichier '{0}' n'existe pas ou n'est pas accessible.</value>
   </data>
   <data name="msgTxtInfo" xml:space="preserve">
     <value>Information</value>
   </data>
   <data name="msgTxtOkSavedNew" xml:space="preserve">
-    <value>The authentication file '{0}' has been created. You can open the folder containing it or create a shortcut on the desktop.</value>
+    <value>Le fichier d'authentification '{0}' a bien été créé. Vous pouvez ouvrir le dossier le contenant ou créer un raccourci sur le bureau.</value>
   </data>
   <data name="msgTxtOkSavedNotNew" xml:space="preserve">
-    <value>The authentication file '{0}' has been saved. You can open the folder containing it or create a shortcut on the desktop.</value>
+    <value>Le fichier d'authentification '{0}' a bien été sauvegardé. Vous pouvez ouvrir le dossier le contenant ou créer un raccourci sur le bureau.</value>
   </data>
   <data name="msgTxtQuestion" xml:space="preserve">
     <value>Question</value>
   </data>
   <data name="msgTxtWarnNoPwd" xml:space="preserve">
-    <value>It is mandatory to enter a password in order to read the CRT file.</value>
+    <value>Il est nécessaire d'entrer un mot de passe afin de pouvoir lire le fichier CRT.</value>
   </data>
   <data name="openForAuthFileFilter" xml:space="preserve">
-    <value>Authentication files|*.crt|All files|*.*</value>
+    <value>Fichiers d'authentification|*.crt|Tous les fichiers|*.*</value>
   </data>
   <data name="openForFilePathFilenameFilter" xml:space="preserve">
-    <value>Executables|*.exe|All files|*.*</value>
+    <value>Applications|*.exe|Tous les fichiers|*.*</value>
   </data>
   <data name="strNoFileExec" xml:space="preserve">
-    <value>No executable file has been specified.</value>
+    <value>Aucun fichier à exécuter n'a été indiqué.</value>
   </data>
   <data name="txtHlinkCreateShortcut" xml:space="preserve">
-    <value>Create a shortcut on the desktop</value>
+    <value>Créer un raccourci sur le bureau</value>
   </data>
   <data name="txtHlinkShowFolderAuthentFileExplorer" xml:space="preserve">
-    <value>Show the authentication file in the explorer</value>
+    <value>Montrer le fichier d'authentification dans l'explorateur</value>
   </data>
 </root>

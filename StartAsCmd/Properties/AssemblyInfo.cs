@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("StartAsCmd")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Bootstraper to start a target application using another profile; Other profile saved in an encrypted authentication file")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("WolfAryx informatique")]
 [assembly: AssemblyProduct("StartAsCmd")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright © 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

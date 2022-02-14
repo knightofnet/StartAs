@@ -3,8 +3,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using AryxDevLibrary.utils;
 using ConfigStartAs.utils;
@@ -29,30 +31,58 @@ namespace ConfigStartAs
 
         public MainWindow()
         {
-
-
             InitializeComponent();
+
+            // Manage tbExecPath events
             tbExecPath.TextChanged += (sender, args) =>
             {
                 if (!_tbExecPathEventState) return;
 
-                if (!String.IsNullOrEmpty(tbExecPath.Text) && tbExecPath.Text.StartsWith("\"") &&
-                    tbExecPath.Text.EndsWith("\""))
-                {
-                    tbExecPath.Text = tbExecPath.Text.Substring(1, tbExecPath.Text.Length - 2);
-                }
+                tbExecPath.Text = tbExecPath.Text.TrimPathExt();
 
-                if (File.Exists(tbExecPath.Text))
+            };
+            tbExecPath.KeyUp += (sender, args) =>
+            {
+                if (args.Key == Key.Enter && File.Exists(tbExecPath.Text))
                 {
                     AdaptUiAtExecFilepath(tbExecPath.Text);
                 }
             };
 
+            _tbExecPathEventState = true;
+
+
+            // Manage tbCryptFilePath events
+            tbCryptFilePath.TextChanged += (sender, args) =>
+            {
+                if (!_tbExecPathEventState) return;
+
+                tbCryptFilePath.Text = tbCryptFilePath.Text.TrimPathExt();
+            };
+            tbCryptFilePath.KeyUp += (sender, args) =>
+            {
+                if (args.Key == Key.Enter && File.Exists(tbCryptFilePath.Text))
+                {
+                    OpenAuthentFile(tbCryptFilePath.Text);
+                }
+            };
+
+            // Drop event
+            AllowDrop = true;
+            Drop += OnDrop;
+
+            gridAuthentLinks.IsEnabled = false;
+
+
             tbSecurityPin.IsEnabled = false;
             tbSecurityDate.IsEnabled = false;
             tbSecurityDate.DisplayDateStart = DateTime.Now;
 
-
+            btnVerifyUser.IsEnabled = false;
+            tbUsername.TextChanged += (sender, args) =>
+            {
+                btnVerifyUser.IsEnabled = tbUsername.Text.Trim().Any();
+            };
 
             chkbPin.Click += (sender, args) =>
             {
@@ -66,13 +96,36 @@ namespace ConfigStartAs
             lblVersion.Content = String.Format(lblVersion.Content.ToString(), Assembly.GetExecutingAssembly().GetName().Version);
         }
 
+        private void OnDrop(object sender, DragEventArgs args)
+        {
+            string[] files = (string[])args.Data.GetData(DataFormats.FileDrop);
+            if (files == null || !files.Any()) return;
+            string file = files[0];
+
+            if (Path.HasExtension(file) && ".crt".Equals(Path.GetExtension(file).ToLower()))
+            {
+                OpenAuthentFile(file);
+            }
+            else
+            {
+                AdaptUiAtExecFilepath(file);
+            }
+        }
+
         private void btnChangeExePath_Click(object sender, RoutedEventArgs e)
         {
+            string initDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            string strExecPath = tbExecPath.Text.TrimPathExt();
+            if (File.Exists(strExecPath) && Path.GetDirectoryName(strExecPath) != null)
+            {
+                initDirectory = Path.GetDirectoryName(strExecPath);
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Multiselect = false,
                 Filter = Properties.Resources.openForFilePathFilenameFilter,
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)
+                InitialDirectory = initDirectory
 
             };
 
@@ -90,7 +143,7 @@ namespace ConfigStartAs
                 return;
             }
 
-            FileInfo execPath = new FileInfo(tbExecPath.Text.Trim('"'));
+            FileInfo execPath = new FileInfo(tbExecPath.Text.TrimPathExt());
             if (!execPath.Exists)
             {
                 MessageBox.Show(
@@ -104,7 +157,7 @@ namespace ConfigStartAs
             {
                 Filepath = execPath.FullName,
                 Arguments = tbArgs.Text,
-                WorkingDirectory = tbWdir.Text.Trim('"'),
+                WorkingDirectory = tbWdir.Text.TrimPathExt(),
                 AuthentFileDateCreated = DateTime.Now,
                 Username = tbUsername.Text,
                 PasswordSecured = tbPwd.Password,
@@ -115,28 +168,37 @@ namespace ConfigStartAs
                 IsHaveExpirationDate = chkbHaveExpirationDate.IsChecked ?? false,
                 ExpirationDate = tbSecurityDate.SelectedDate
             };
-            
+
             try
             {
-                string parentDirCrtFile = Path.GetDirectoryName(tbCryptFilePath.Text.Trim('"'));
+                string parentDirCrtFile = Path.GetDirectoryName(tbCryptFilePath.Text.TrimPathExt());
                 if (_isNewFile && parentDirCrtFile != null && !Directory.Exists(parentDirCrtFile))
                 {
                     Directory.CreateDirectory(parentDirCrtFile);
                 }
-                AuthentFileUtils.CreateFile(aFile, tbCryptFilePath.Text.Trim('"'));
+                AuthentFileUtils.CreateFile(aFile, tbCryptFilePath.Text.TrimPathExt());
 
+                String msg = Properties.Resources.msgTxtOkSavedNotNew;
+                if (_isNewFile)
+                {
+                    GuiMiscUtils.MsgInfo(string.Format(Properties.Resources.msgTxtOkSavedNew, Path.GetFileName(tbCryptFilePath.Text) ),
+                        Properties.Resources.msgTxtInfo);
+                }
+
+                gridAuthentLinks.IsEnabled = true;
                 _isNewFile = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Properties.Resources.msgTxtErrorCreateAuthentFile, Properties.Resources.msgTxtError, MessageBoxButton.OK, MessageBoxImage.Error);
+                GuiMiscUtils.MsgError(Properties.Resources.msgTxtErrorCreateAuthentFile,
+                    Properties.Resources.msgTxtError);
             }
 
         }
 
         private void btnNewCrptFile_Click(object sender, RoutedEventArgs e)
         {
-            string authentFilepath = tbCryptFilePath.Text.Trim('"');
+            string authentFilepath = tbCryptFilePath.Text.TrimPathExt();
             if (!_isNewFile)
             {
                 MessageBoxResult result = MessageBox.Show(
@@ -157,7 +219,12 @@ namespace ConfigStartAs
 
         private void btnOpenCrptFile_Click(object sender, RoutedEventArgs e)
         {
-            string authentFilepath = tbCryptFilePath.Text.Trim('"');
+            string authentFilepath = tbCryptFilePath.Text.TrimPathExt();
+            OpenAuthentFile(authentFilepath);
+        }
+
+        private void OpenAuthentFile(string authentFilepath)
+        {
             if (!_isNewFile)
             {
                 MessageBoxResult result = MessageBox.Show(
@@ -204,7 +271,8 @@ namespace ConfigStartAs
             if (aFile == null) return;
 
             bool isCanOpenFile = true;
-            if (aFile.PasswordSecured.Any())
+
+            if (aFile.PasswordSecured.Any() && !aFile.IsTempAuthentfile)
             {
                 isCanOpenFile = false;
                 PasswordBoxView pwdView = new PasswordBoxView(aFile.Username);
@@ -226,14 +294,21 @@ namespace ConfigStartAs
                         Properties.Resources.msgTxtError);
                 }
             }
+            else if (aFile.IsTempAuthentfile)
+            {
+                isCanOpenFile = false;
+                GuiMiscUtils.MsgError(
+                    "Ce fichier d'authentification est temporaire; il ne peut être édité.",
+                    Properties.Resources.msgTxtError);
+            }
 
             if (isCanOpenFile)
             {
                 AdaptUiFromAuthentFile(aFile);
                 tbCryptFilePath.Text = authentFilepath;
                 _isNewFile = false;
+                gridAuthentLinks.IsEnabled = true;
             }
-
         }
 
         private void AdaptUiAtExecFilepath(string execFilepath)
@@ -317,6 +392,8 @@ namespace ConfigStartAs
 
             tbCryptFilePath.Clear();
 
+            gridAuthentLinks.IsEnabled = false;
+
             _tbExecPathEventState = true;
         }
 
@@ -353,6 +430,22 @@ namespace ConfigStartAs
             return true;
         }
 
+
+        private void btnVerifyUser_Click(object sender, RoutedEventArgs e)
+        {
+            String tUsername = tbUsername.Text;
+            if (string.IsNullOrWhiteSpace(tUsername)) return;
+
+            if (MiscAppUtils.IsUserExist(tUsername))
+            {
+                GuiMiscUtils.MsgInfo("L'utilisateur existe sur cet ordinateur", "Information");
+            }
+            else
+            {
+                GuiMiscUtils.MsgError("L'utilisateur n'existe pas sur cet ordinateur", "Information");
+            }
+        }
+
         private void hlinkCreateShortcut_Click(object sender, RoutedEventArgs e)
         {
             if (_isNewFile) return;
@@ -360,11 +453,19 @@ namespace ConfigStartAs
             ShortcutCreator shortcutCreator = new ShortcutCreator(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "StartAsCmd.exe"),
                 $"Raccourci vers {Path.GetFileNameWithoutExtension(tbExecPath.Text)}",
                 Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
-                );
+            );
             shortcutCreator.Args = $"-{CmdArgsOptions.OptAuthentFile.ShortOpt} \"{tbCryptFilePath.Text}\"";
             shortcutCreator.IconFile = $"{tbExecPath.Text}";
 
             shortcutCreator.CreateShortcut();
         }
+
+        private void hlinkOpenFolderCrt_Click(object sender, RoutedEventArgs e)
+        {
+            if (_isNewFile) return;
+            
+            FileUtils.ShowFileInWindowsExplorer(tbExecPath.Text.TrimPathExt());
+        }
     }
+
 }
