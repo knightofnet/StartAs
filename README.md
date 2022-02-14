@@ -108,15 +108,15 @@ This application is an alternative to an already existing one, but open-source, 
 
 In some circumstances it can be useful to start an application as another user. This is possible by using the command "runas" in the command prompt. If, for example, I want to start the application "notepad" as "Max", you would write this:
 
-```
+```bat
 runas /user:Max "notepad.exe"
-``` 
+```
 
 You will then be prompted to enter the password for Max's session. If you want to enter the password in the command, then you should write this:
 
-```
+```bat
 runas /user:Max /savecreds "notepad.exe"
-``` 
+```
 
 You will again be asked to enter the password for Max's session, but then this password is saved with your session. You will be able to check it by going to the "Windows credentials" section of the Windows Credentials Manager (also see [this](https://www.sevenforums.com/tutorials/135805-credential-manager-shortcut-create.html)).
 
@@ -149,7 +149,7 @@ To test that you have the minimum version required, you can run this Powershell 
 1. Open Powershell by typing ```powershell``` into command prompt, or start menu.
 2. Write the text above and valid with return :
 
-```
+```pwsh
 (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full").Release -ge 528040
 ```
 
@@ -168,8 +168,9 @@ To test that you have the minimum version required, you can run this Powershell 
 ## Usage
 
 Two executables come with the downloaded release:
-- ``StartAsCmd.exe``: this is the main executable. It is a bootstraper to start a target application using another profile; Other profile saved in an encrypted authentication file.
-- ``ConfigStartAs.exe`` : this application allows the creation of authentication file.
+
+* ``StartAsCmd.exe``: this is the main executable. It is a bootstraper to start a target application using another profile; Other profile saved in an encrypted authentication file.
+* ``ConfigStartAs.exe`` : this application allows the creation of authentication file.
 
 ### Create an authentification file
 
@@ -183,9 +184,9 @@ The path of the executable is the path to the file that must be launched with an
 
 There are some security options that can be activated:
 
-- The authentication file can have a limited validity in time. To do this, check the corresponding box and set an expiration date.
-- It is also possible to perform an integrity test of the target executable file, at the time of launching with the profile of the other user. A SHA1 comparison will then be performed. This can slow down the launch of the application, but it guarantees that the executable is the right one (and not another one, with the same name in the same folder).
-- Finally, it is possible to ask for a PIN code to start the target application. It is a code on 4 to 8 characters, only numbers. Only users with the PIN code will be able to start the target application, but still without knowing the password of the used profile.
+* The authentication file can have a limited validity in time. To do this, check the corresponding box and set an expiration date.
+* It is also possible to perform an integrity test of the target executable file, at the time of launching with the profile of the other user. A SHA1 comparison will then be performed. This can slow down the launch of the application, but it guarantees that the executable is the right one (and not another one, with the same name in the same folder).
+* Finally, it is possible to ask for a PIN code to start the target application. It is a code on 4 to 8 characters, only numbers. Only users with the PIN code will be able to start the target application, but still without knowing the password of the used profile.
 
 Once everything is set up, you can click on the "Save" button in the lower part of the window. This will create the authentication file at the address specified in the "Authentication file" text box.
 
@@ -199,13 +200,13 @@ This file should be used with the 'StartAsCmd.exe' executable to start the targe
 
 With the authentication file, use the executable as follows to start the target application with a different profile:
 
-```
+```bat
 StartAsCmd.exe AuthFile.crt
 ```
 
 It is also possible to start with arguments named :
 
-```
+```bat
 StartAsCmd.exe -f AuthFile.crt [-w]
 StartAsCmd.exe --authent-file AuthFile.crt [--wait]
 ```
