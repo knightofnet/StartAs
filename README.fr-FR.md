@@ -40,11 +40,13 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 <h3 align="center">Start App As</h3>
 
   <p align="center">
-    Run application with administrator privileges from a standard account, by saving credentials into an encrypted file.
+    Démarrer une application avec les droits administrateur à partir d'un compte standard, en sauvegardant les informations d'identifications dans un fichier chiffré.
     <br />
     <a href="https://github.com/knightofnet/StartAs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
+    <a href="https://github.com/knightofnet/StartAs">View Demo</a>
+    ·
     <a href="https://github.com/knightofnet/StartAs/issues">Report Bug</a>
     ·
     <a href="https://github.com/knightofnet/StartAs/issues">Request Feature</a>
@@ -55,13 +57,13 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Sommaire</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">A propos</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
-        <li><a href="#potential-security-threat">Potential security threat</a></li>
+        <li><a href="#built-with">Contruit avec</a></li>
+        <li><a href="#potential-security-threat">Menace potentielle liée à la sécurité</a></li>
       </ul>
     </li>
     <li>
@@ -88,11 +90,11 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Tux, the Linux mascot](/reposElements/configStartAs_MainView.png)
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-"Start As" is an application for Windows designed to allow launching applications as another profile with administrator privileges from a standard account. For this purpose, the credentials of the administrator account are saved in an encrypted file.
+"Start As" est une application Windows conçue pour permettre de lancer des applications en tant qu'un autre utilisateur, tel qu'un utilisateur avec des privilèges d'administrateur, à partir d'un compte standard. Les identifiants sont enregistrés dans un fichier chiffré.
 
-This application is an alternative to an already existing one, but open-source, free and without annoying windows at launch.
+Cette application est une alternative à une autre application déjà existante, mais "Start As" est open-source, gratuite et sans fenêtres gênantes au lancement.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -104,34 +106,31 @@ This application is an alternative to an already existing one, but open-source, 
 
 ### How it works
 
-In some circumstances it can be useful to start an application as another user. This is possible by using the command "runas" in the command prompt. If, for example, I want to start the application "notepad" as "Max", you would write this:
+Dans certains situations il peut être utile de démarrer une application en tant qu'un autre utilisateur (pour des mise à jour de pilotes, l'installation d'un logiciel particulier, etc.). Dans Windows, ceci est possible en utilisant la commande "runas" dans l'invite de commandes. Par exemple, si vous souhaitez démarrer l'applicatin "notepad" en tant que Max, vous devez écrire ceci :
 
 ```bat
 runas /user:Max "notepad.exe"
 ```
 
-You will then be prompted to enter the password for Max's session. If you want to enter the password in the command, then you should write this:
+Une fois cette commande entrée, le mot de passe du profil Max vous sera demandé. Si vous voulez que le mot de passe de Max soit enregistré pour les autres lancements, vous devez écrire ceci :
 
 ```bat
 runas /user:Max /savecreds "notepad.exe"
 ```
 
-You will again be asked to enter the password for Max's session, but then this password is saved with your session. You will be able to check it by going to the "Windows credentials" section of the Windows Credentials Manager (also see [this](https://www.sevenforums.com/tutorials/135805-credential-manager-shortcut-create.html)).
+Une fois encore, le mot de passe du profil de Max vous sera demandé. Lors des lancements suivant avec la commande "runas", ce dernier ne vous sera plus demandé car il est sauvegardé dans votre session. Vous pouvez le vérifier en vous rendant dans la section "Informations d'identification Windows" du Gestionnaire d'identification.
 
-The fact that the password is saved is a security issue: anyone can potentially get that password and thus access to a session with higher privileges. It is to prevent this that "Start As" exists.
+La visibilité du mot de passe ainsi sauvegardé est un souci de sécurité : les personnes pouvant avoir accès à l'ordinateur peuvent récupérer ce mot de passe et ainsi accéder à la session d'un autre profil (ici Max); cet autre profil pouvant disposer de droits administrateur. C'est pour prévenir cela que l'application "Start As" a été créée.
 
-By saving the password in a file (named "authentification file", a file of type crt), in an encrypted and secure way, "Start As" allows to share this file with another user so that he can start the desired target program, without revealing the password. In the details, you will first have to create an authentication file using the 'configSaveAs' tool. Then, once this file is created, it will be necessary to pass it as a parameter of the executable "StartAsCmd.exe".
+En enregistrant le mot de passe dans un fichier (nommé "fichier d'authentification", avec comme extenstion crt), d'une façon chiffrée et sécurisée, "Start As" permet de partager ce fichier avec un autre utilisateur afin qu'il puisse lancer le programme cible souhaité, sans révéler le mot de passe. Dans les détails, il faudra d'abord créer un fichier d'authentification à l'aide de l'outil 'configSaveAs'. Ensuite, une fois ce fichier créé, il faudra le passer comme paramètre de l'exécutable "StartAsCmd.exe".
 
-
-### Potential security threat
+### Menace potentielle sur la sécurité
 
 For security reasons, it is important that regular Windows users use a session with limited rights, as well as a session with administrator rights. Indeed, for a regularly use, a standard user does not need administrator rights and can ask for an elevation of privileges during installations. Linux, Android or iOs distributions work on the same principle. This precaution won't prevent or mitigate all malware infections. Some malware can "escalate" its system privileges and give itself powers that a limited user doesn't have. But regular, run-of-the-mill malware, which is what most people face most of the time, doesn't do that.
 
 Read this article for more details : [Protect your computer with this one simple trick, TomsGuide.com, Paul Wagenseil, published March 20, 2019](https://www.tomsguide.com/us/limited-account-benefits,news-25682.html).
 
 Based on this, "Start As" can make it easier to start applications as an administrator. Using a web browser can be risky in these conditions: viruses, malware or other security risks are more likely to corrupt the use of your computer. Preferably run browsers with a limited account.
-
-StartAs can be a useful program, but it will still be a break in security. **Use it with care and responsibility**.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -149,7 +148,7 @@ To test that you have the minimum version required, you can run this Powershell 
 1. Open Powershell by typing ```powershell``` into command prompt, or start menu.
 2. Write the text above and valid with return :
 
-```pwsh
+```
 (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full").Release -ge 528040
 ```
 
@@ -168,15 +167,14 @@ To test that you have the minimum version required, you can run this Powershell 
 ## Usage
 
 Two executables come with the downloaded release:
-
-* ``StartAsCmd.exe``: this is the main executable. It is a bootstraper to start a target application using another profile; Other profile saved in an encrypted authentication file.
-* ``ConfigStartAs.exe`` : this application allows the creation of authentication file.
+- ``StartAsCmd.exe``: this is the main executable. It is a bootstraper to start a target application using another profile; Other profile saved in an encrypted authentication file.
+- ``ConfigStartAs.exe`` : this application allows the creation of authentication file.
 
 ### Create an authentification file
 
 To start an application with another profile, it is necessary to create an authentication file first. This file will contain the connection information, as well as the target application, its working path, and possibly some launch arguments. Everything is encrypted using the SID of the computer and a unique Salt.
 
-***Note: the unique salt is a constant in the ``SpecConstant.cs``. The commit version contains a default value, different from the one used for the releases.***
+``Note: the unique salt is a constant in the . The commit version contains a default value, different from the one used for the releases.``
 
 The creation of the authentication file is done by launching the executable 'ConfigStartAs.exe'. A window opens with different text fields that must be valued:
 
@@ -184,9 +182,9 @@ The path of the executable is the path to the file that must be launched with an
 
 There are some security options that can be activated:
 
-* The authentication file can have a limited validity in time. To do this, check the corresponding box and set an expiration date.
-* It is also possible to perform an integrity test of the target executable file, at the time of launching with the profile of the other user. A SHA1 comparison will then be performed. This can slow down the launch of the application, but it guarantees that the executable is the right one (and not another one, with the same name in the same folder).
-* Finally, it is possible to ask for a PIN code to start the target application. It is a code on 4 to 8 characters, only numbers. Only users with the PIN code will be able to start the target application, but still without knowing the password of the used profile.
+- The authentication file can have a limited validity in time. To do this, check the corresponding box and set an expiration date.
+- It is also possible to perform an integrity test of the target executable file, at the time of launching with the profile of the other user. A SHA1 comparison will then be performed. This can slow down the launch of the application, but it guarantees that the executable is the right one (and not another one, with the same name in the same folder).
+- Finally, it is possible to ask for a PIN code to start the target application. It is a code on 4 to 8 characters, only numbers. Only users with the PIN code will be able to start the target application, but still without knowing the password of the used profile.
 
 Once everything is set up, you can click on the "Save" button in the lower part of the window. This will create the authentication file at the address specified in the "Authentication file" text box.
 
@@ -200,13 +198,13 @@ This file should be used with the 'StartAsCmd.exe' executable to start the targe
 
 With the authentication file, use the executable as follows to start the target application with a different profile:
 
-```bat
+```
 StartAsCmd.exe AuthFile.crt
 ```
 
 It is also possible to start with arguments named :
 
-```bat
+```
 StartAsCmd.exe -f AuthFile.crt [-w]
 StartAsCmd.exe --authent-file AuthFile.crt [--wait]
 ```
@@ -240,7 +238,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the  GPL-3.0 License. See `LICENSE` for more information.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
