@@ -218,9 +218,21 @@ namespace StartAsCmd
 
             Log.Debug(newProcessArgs.ToString());
 
+            string startAsFileName = Assembly.GetExecutingAssembly().Location;
+            string startAsCmdDir = Path.GetDirectoryName(startAsFileName);
+            if (startAsCmdDir != null)
+            {
+                string locNoWin = Path.Combine(startAsCmdDir, "StartAsNoWin.exe");
+                if (File.Exists(locNoWin))
+                {
+                    startAsFileName = locNoWin;
+                }
+            }
+
+
             ProcessStartInfo psi = new ProcessStartInfo()
             {
-                FileName = Assembly.GetExecutingAssembly().Location,
+                FileName = startAsFileName,
                 UseShellExecute = false,
                 Arguments = newProcessArgs.ToString().TrimStart(),
                 UserName = aFile.Username,

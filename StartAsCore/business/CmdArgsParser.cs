@@ -12,6 +12,7 @@ namespace StartAsCore.business
             AddOption(CmdArgsOptions.OptAuthentFile);
             AddOption(CmdArgsOptions.OptWait);
             AddOption(CmdArgsOptions.OptSecuredPinStart);
+            AddOption(CmdArgsOptions.OptRunNoWinIfPossible);
             AddOption(CmdArgsOptions.OptRunnedWithProfile);
         }
         public override AppArgs ParseDirect(string[] args)
@@ -26,7 +27,7 @@ namespace StartAsCore.business
             retAppArgs.AuthentFilepath = GetSingleOptionValue(CmdArgsOptions.OptAuthentFile, arg);
             retAppArgs.WaitForApp = HasOption(CmdArgsOptions.OptWait, arg);
             retAppArgs.RunnedWithProfile = HasOption(CmdArgsOptions.OptRunnedWithProfile, arg);
-
+            retAppArgs.RunNoWinIfPossible = HasOption(CmdArgsOptions.OptRunNoWinIfPossible, arg);
 
             if (HasOption(CmdArgsOptions.OptSecuredPinStart, arg))
             {

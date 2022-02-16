@@ -9,5 +9,7 @@ namespace StartAsCore.dto
         public bool WaitForApp { get; set; }
         public bool RunnedWithProfile { get; set; }
         public string TmpAuthentFilepath { get; set; }
+
+        public bool RunNoWinIfPossible { get; set; }
     }
 }

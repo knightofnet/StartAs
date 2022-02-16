@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartAsCmd", "StartAsCmd\St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigStartAs", "ConfigStartAs\ConfigStartAs.csproj", "{A4275122-C601-4B23-89FA-22AD88E4E3F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartAsNoWin", "StartAsNoWin\StartAsNoWin.csproj", "{63B083BA-E37B-473A-ABDC-010161E17C28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A4275122-C601-4B23-89FA-22AD88E4E3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4275122-C601-4B23-89FA-22AD88E4E3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4275122-C601-4B23-89FA-22AD88E4E3F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63B083BA-E37B-473A-ABDC-010161E17C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63B083BA-E37B-473A-ABDC-010161E17C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63B083BA-E37B-473A-ABDC-010161E17C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63B083BA-E37B-473A-ABDC-010161E17C28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

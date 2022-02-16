@@ -36,6 +36,17 @@ namespace StartAsCore.constant
 
         };
 
+        public static readonly Option OptRunNoWinIfPossible = new Option()
+        {
+            ShortOpt = "n",
+            LongOpt = "runnowin",
+            Description = "run with no win cmd if possible",
+            HasArgs = false,
+            Name = "OptRunNoWinIfPossible",
+            IsMandatory = false,
+            IsHiddenInHelp = true
+        };
+
         public static readonly Option OptRunnedWithProfile = new Option()
         {
             ShortOpt = "r",
