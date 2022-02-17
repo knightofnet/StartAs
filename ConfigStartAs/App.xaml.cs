@@ -10,7 +10,7 @@ namespace ConfigStartAs
     {
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            //ConfigStartAs.Properties.Resources.Culture = new CultureInfo("en-US");
+            //ConfigStartAs.Properties.Resources.Culture = new CultureInfo("es-ES");
             ConfigStartAs.Properties.Resources.Culture = CultureInfo.CurrentUICulture;
             
             MainWindow m = new MainWindow();
