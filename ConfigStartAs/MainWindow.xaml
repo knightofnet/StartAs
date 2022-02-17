@@ -55,7 +55,7 @@
                 <Label  Content="{x:Static resx:Resources.lblUsername}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="tbUsername" Height="23" Margin="140,14,90.4,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
-                <Button x:Name="btnVerifyUser" Content="{x:Static resx:Resources.lblGpStartAs}" HorizontalAlignment="Right" Margin="0,14,10.4,0" VerticalAlignment="Top" Width="75" Height="23" Click="btnVerifyUser_Click"/>
+                <Button x:Name="btnVerifyUser" Content="{x:Static resx:Resources.lblBtnVerify}" HorizontalAlignment="Right" Margin="0,14,10.4,0" VerticalAlignment="Top" Width="75" Height="23" Click="btnVerifyUser_Click"/>
 
 
                 <Label  Content="{x:Static resx:Resources.lblPassword}" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
