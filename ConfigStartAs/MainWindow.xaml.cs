@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
@@ -298,7 +299,7 @@ namespace ConfigStartAs
             {
                 isCanOpenFile = false;
                 GuiMiscUtils.MsgError(
-                    "Ce fichier d'authentification est temporaire; il ne peut être édité.",
+                    "Ce fichier d'authentification est temporaire; il ne peut pas être édité.",
                     Properties.Resources.msgTxtError);
             }
 
@@ -458,6 +459,7 @@ namespace ConfigStartAs
             shortcutCreator.IconFile = $"{tbExecPath.Text}";
 
             shortcutCreator.CreateShortcut();
+            SystemSounds.Beep.Play();
         }
 
         private void hlinkOpenFolderCrt_Click(object sender, RoutedEventArgs e)
