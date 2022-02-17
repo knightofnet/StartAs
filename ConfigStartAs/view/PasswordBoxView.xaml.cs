@@ -19,6 +19,11 @@ namespace ConfigStartAs.view
             lblUsername.Content = username;
 
             Result = MessageBoxResult.Cancel;
+
+            Loaded += (sender, args) =>
+            {
+                passwordBox.Focus();
+            };
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
