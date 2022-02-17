@@ -48,6 +48,12 @@ namespace ConfigStartAs
                 {
                     AdaptUiAtExecFilepath(tbExecPath.Text);
                 }
+                else if (args.Key == Key.Enter &&
+                         "powershell".Equals(tbExecPath.Text, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    tbExecPath.Text = CommonCst.DefaultPowerShellExecPath;
+                    AdaptUiAtExecFilepath(tbExecPath.Text);
+                }
             };
 
             _tbExecPathEventState = true;
@@ -180,14 +186,15 @@ namespace ConfigStartAs
                 AuthentFileUtils.CreateFile(aFile, tbCryptFilePath.Text.TrimPathExt());
 
                 String msg = Properties.Resources.msgTxtOkSavedNotNew;
-                if (_isNewFile)
-                {
-                    GuiMiscUtils.MsgInfo(string.Format(Properties.Resources.msgTxtOkSavedNew, Path.GetFileName(tbCryptFilePath.Text) ),
-                        Properties.Resources.msgTxtInfo);
-                }
+                GuiMiscUtils.MsgInfo(
+                    _isNewFile
+                        ? string.Format(Properties.Resources.msgTxtOkSavedNew, Path.GetFileName(tbCryptFilePath.Text))
+                        : Properties.Resources.msgAuthentFileSaved,
+                    Properties.Resources.msgTxtInfo);
 
                 gridAuthentLinks.IsEnabled = true;
                 _isNewFile = false;
+
             }
             catch (Exception ex)
             {
@@ -299,7 +306,7 @@ namespace ConfigStartAs
             {
                 isCanOpenFile = false;
                 GuiMiscUtils.MsgError(
-                    "Ce fichier d'authentification est temporaire; il ne peut pas être édité.",
+                    Properties.Resources.msgTxtCantEditTempAuthFile,
                     Properties.Resources.msgTxtError);
             }
 
@@ -314,6 +321,11 @@ namespace ConfigStartAs
 
         private void AdaptUiAtExecFilepath(string execFilepath)
         {
+            if (!DoSpecialsBehaviors(execFilepath))
+            {
+                return;
+            }
+
             tbExecPath.Text = execFilepath;
             tbWdir.Text = Path.GetDirectoryName(execFilepath);
 
@@ -324,7 +336,10 @@ namespace ConfigStartAs
             }
 
             SetExeIcon(execFilepath);
+
+
         }
+
 
         private void AdaptUiFromAuthentFile(AuthentFile aFile)
         {
@@ -342,6 +357,8 @@ namespace ConfigStartAs
             chkbPin.IsChecked = aFile.IsAskForPinAtStart;
             tbSecurityPin.Text = aFile.IsAskForPinAtStart ? aFile.PinStart : string.Empty;
             tbSecurityPin.IsEnabled = aFile.IsAskForPinAtStart;
+
+            cbWindowStart.SelectedItem = cbWindowStart.Items.OfType<ComboBoxItem>().FirstOrDefault(r => ((ProcessWindowStyle)r.Tag) == aFile.WindowStyleToLaunch);
 
             chkbHaveExpirationDate.IsChecked = aFile.IsHaveExpirationDate;
             tbSecurityDate.SelectedDate = aFile.IsHaveExpirationDate ? aFile.ExpirationDate : null;
@@ -367,6 +384,41 @@ namespace ConfigStartAs
                 }
             }
         }
+        private bool DoSpecialsBehaviors(string execFilepath)
+        {
+            if (CommonCst.DefaultPowerShellExecPath.Equals(execFilepath, StringComparison.CurrentCultureIgnoreCase))
+            {
+                var choice = MessageBox.Show(Properties.Resources.msgAskForPs1,
+                    Properties.Resources.msgTxtQuestion,
+                    MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Information);
+
+                if (choice == MessageBoxResult.Cancel)
+                {
+                    return false;
+                }
+
+                if (choice == MessageBoxResult.Yes)
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog
+                    {
+                        Multiselect = false,
+                        Filter = Properties.Resources.openForFilePs1FilenameFilter,
+                        InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer)
+
+                    };
+
+                    if (openFileDialog.ShowDialog() != true) return false;
+
+                    tbArgs.Text = $"-ExecutionPolicy Bypass -File \"{openFileDialog.FileName}\"";
+                }
+
+
+
+            }
+
+            return true;
+        }
 
         private void ResetForms()
         {
@@ -390,6 +442,8 @@ namespace ConfigStartAs
             tbSecurityDate.SelectedDate = null;
 
             chkbVerif.IsChecked = false;
+
+            cbWindowStart.SelectedIndex = 0;
 
             tbCryptFilePath.Clear();
 
@@ -439,11 +493,11 @@ namespace ConfigStartAs
 
             if (MiscAppUtils.IsUserExist(tUsername))
             {
-                GuiMiscUtils.MsgInfo("L'utilisateur existe sur cet ordinateur", "Information");
+                GuiMiscUtils.MsgInfo(Properties.Resources.msgTxtUserExists, Properties.Resources.msgTxtInfo);
             }
             else
             {
-                GuiMiscUtils.MsgError("L'utilisateur n'existe pas sur cet ordinateur", "Information");
+                GuiMiscUtils.MsgError(Properties.Resources.msgTxtUserNotExists, Properties.Resources.msgTxtInfo);
             }
         }
 
@@ -465,7 +519,7 @@ namespace ConfigStartAs
         private void hlinkOpenFolderCrt_Click(object sender, RoutedEventArgs e)
         {
             if (_isNewFile) return;
-            
+
             FileUtils.ShowFileInWindowsExplorer(tbExecPath.Text.TrimPathExt());
         }
     }

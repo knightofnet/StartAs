@@ -277,6 +277,33 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Powershell has been selected. Do you want to choose to run a *.ps1 script (must be accessible by the target user)?.
+        /// </summary>
+        public static string msgAskForPs1 {
+            get {
+                return ResourceManager.GetString("msgAskForPs1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Authentication file saved.
+        /// </summary>
+        public static string msgAuthentFileSaved {
+            get {
+                return ResourceManager.GetString("msgAuthentFileSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à This authentication file is temporary; it cannot be edited..
+        /// </summary>
+        public static string msgTxtCantEditTempAuthFile {
+            get {
+                return ResourceManager.GetString("msgTxtCantEditTempAuthFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Changes may have been made to file &apos;{0}&apos;. If you open another file, you may lose these changes. Do you want to continue?.
         /// </summary>
         public static string msgTxtChangesPending {
@@ -385,6 +412,24 @@ namespace ConfigStartAs.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à User exists on this computer.
+        /// </summary>
+        public static string msgTxtUserExists {
+            get {
+                return ResourceManager.GetString("msgTxtUserExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à User does not exist on this computer.
+        /// </summary>
+        public static string msgTxtUserNotExists {
+            get {
+                return ResourceManager.GetString("msgTxtUserNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à It is mandatory to enter a password in order to read the CRT file..
         /// </summary>
         public static string msgTxtWarnNoPwd {
@@ -408,6 +453,15 @@ namespace ConfigStartAs.Properties {
         public static string openForFilePathFilenameFilter {
             get {
                 return ResourceManager.GetString("openForFilePathFilenameFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à PowerShell Script|*.ps1|All files|*.*.
+        /// </summary>
+        public static string openForFilePs1FilenameFilter {
+            get {
+                return ResourceManager.GetString("openForFilePs1FilenameFilter", resourceCulture);
             }
         }
         

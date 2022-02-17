@@ -189,6 +189,15 @@
   <data name="lblWs" xml:space="preserve">
     <value>Ejecutar:</value>
   </data>
+  <data name="msgAskForPs1" xml:space="preserve">
+    <value>Se ha seleccionado Powershell. ¿Desea elegir la ejecución de un script *.ps1 (debe ser accesible por el usuario de destino)?</value>
+  </data>
+  <data name="msgAuthentFileSaved" xml:space="preserve">
+    <value>Archivo de autenticación guardado</value>
+  </data>
+  <data name="msgTxtCantEditTempAuthFile" xml:space="preserve">
+    <value>Este archivo de autenticación es temporal; no se puede editar.</value>
+  </data>
   <data name="msgTxtChangesPending" xml:space="preserve">
     <value>Es posible que se hayan realizado cambios en el archivo '{0}'. Si abre otro archivo, puede perder estos cambios. ¿Desea continuar?</value>
   </data>
@@ -225,6 +234,12 @@
   <data name="msgTxtQuestion" xml:space="preserve">
     <value>Pregunta</value>
   </data>
+  <data name="msgTxtUserExists" xml:space="preserve">
+    <value>El usuario existe en este ordenador</value>
+  </data>
+  <data name="msgTxtUserNotExists" xml:space="preserve">
+    <value>El usuario no existe en este ordenador</value>
+  </data>
   <data name="msgTxtWarnNoPwd" xml:space="preserve">
     <value>Es obligatorio introducir la contraseña para poder leer el fichero CRT.</value>
   </data>
@@ -233,6 +248,9 @@
   </data>
   <data name="openForFilePathFilenameFilter" xml:space="preserve">
     <value>Ejecutables|*.exe|Todos los archivos|*.*</value>
+  </data>
+  <data name="openForFilePs1FilenameFilter" xml:space="preserve">
+    <value>Script PowerShell|*.ps1|Todos los archivos|*.*</value>
   </data>
   <data name="strNoFileExec" xml:space="preserve">
     <value>No se ha especificado ningún archivo ejecutable.</value>

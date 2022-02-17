@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Media;
 using System.Reflection;
 using System.Text;
 using System.Threading;
@@ -8,6 +9,7 @@ using AryxDevLibrary.extensions;
 using AryxDevLibrary.utils;
 using AryxDevLibrary.utils.cliParser;
 using AryxDevLibrary.utils.logger;
+using StartAsCmd.utils;
 using StartAsCore.business;
 using StartAsCore.constant;
 using StartAsCore.dto;
@@ -45,7 +47,7 @@ namespace StartAsCmd
                 if (aFile == null) throw new Exception("Empty aFile");
 
                 _log.Debug("Step 3 - Verify conditions to run");
-                VerifBeforeStart(aFile, appArgs.SecuredPinStart);
+                VerifBeforeStart(aFile, appArgs.SecuredPinStart, appArgs);
 
                 _log.Debug("Step 4 - Run sub-process");
                 Environment.Exit(RunCert(aFile, appArgs));
@@ -74,7 +76,8 @@ namespace StartAsCmd
                 _log = new Logger(Path.Combine(LocalAppDataDir, "log.log"), Logger.LogLvl.DEBUG,
                     Logger.LogLvl.DEBUG, "1Mo");
 #else
-            _log = new Logger(Path.Combine(LocalAppDataDir, "log.log"), Logger.LogLvl.ERROR, Logger.LogLvl.ERROR, "1Mo")
+                _log = new Logger(Path.Combine(LocalAppDataDir, "log.log"), Logger.LogLvl.ERROR, Logger.LogLvl.ERROR,
+                    "1Mo");
 #endif
             }
             catch (Exception ex)
@@ -263,7 +266,7 @@ namespace StartAsCmd
                     startAsFileName = locNoWin;
                 }
             }
-
+            
             ProcessStartInfo psi = new ProcessStartInfo()
             {
                 FileName = startAsFileName,
@@ -284,7 +287,7 @@ namespace StartAsCmd
             return psi;
         }
 
-        private static void VerifBeforeStart(AuthentFile aFile, string pinStartEncrypted)
+        private static void VerifBeforeStart(AuthentFile aFile, string pinStartEncrypted, AppArgs appArgs)
         {
 
             if (aFile.IsDoSha1VerifAtStart)
@@ -317,6 +320,11 @@ namespace StartAsCmd
                 string pinInput = pinStartEncrypted == null ? null : StringCipher.Decrypt(pinStartEncrypted, aFile.GetSpecialHashCode());
                 if (pinInput == null)
                 {
+                    if (appArgs.RunNoWinIfPossible)
+                    {
+                        SystemSounds.Beep.Play();
+                        Environment.Exit(50);
+                    }
                     Console.WriteLine(Properties.Resources.msgEnterPinToStart);
                     pinInput = Console.ReadLine();
                 }

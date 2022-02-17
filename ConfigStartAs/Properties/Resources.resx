@@ -189,6 +189,15 @@
   <data name="lblWs" xml:space="preserve">
     <value>Run</value>
   </data>
+  <data name="msgAskForPs1" xml:space="preserve">
+    <value>Powershell has been selected. Do you want to choose to run a *.ps1 script (must be accessible by the target user)?</value>
+  </data>
+  <data name="msgAuthentFileSaved" xml:space="preserve">
+    <value>Authentication file saved</value>
+  </data>
+  <data name="msgTxtCantEditTempAuthFile" xml:space="preserve">
+    <value>This authentication file is temporary; it cannot be edited.</value>
+  </data>
   <data name="msgTxtChangesPending" xml:space="preserve">
     <value>Changes may have been made to file '{0}'. If you open another file, you may lose these changes. Do you want to continue?</value>
   </data>
@@ -225,6 +234,12 @@
   <data name="msgTxtQuestion" xml:space="preserve">
     <value>Question</value>
   </data>
+  <data name="msgTxtUserExists" xml:space="preserve">
+    <value>User exists on this computer</value>
+  </data>
+  <data name="msgTxtUserNotExists" xml:space="preserve">
+    <value>User does not exist on this computer</value>
+  </data>
   <data name="msgTxtWarnNoPwd" xml:space="preserve">
     <value>It is mandatory to enter a password in order to read the CRT file.</value>
   </data>
@@ -233,6 +248,9 @@
   </data>
   <data name="openForFilePathFilenameFilter" xml:space="preserve">
     <value>Executables|*.exe|All files|*.*</value>
+  </data>
+  <data name="openForFilePs1FilenameFilter" xml:space="preserve">
+    <value>PowerShell Script|*.ps1|All files|*.*</value>
   </data>
   <data name="strNoFileExec" xml:space="preserve">
     <value>No executable file has been specified.</value>

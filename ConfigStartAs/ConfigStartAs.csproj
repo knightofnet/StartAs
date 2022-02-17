@@ -169,6 +169,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetDir)ConfigStartAs.exe $(SolutionDir)releases\$(ConfigurationName)
-xcopy $(TargetDir)fr-FR\ $(SolutionDir)releases\$(ConfigurationName)\fr-FR\ /E /Y</PostBuildEvent>
+xcopy $(TargetDir)fr-FR\ $(SolutionDir)releases\$(ConfigurationName)\fr-FR\ /E /Y
+xcopy $(TargetDir)es-ES\ $(SolutionDir)releases\$(ConfigurationName)\es-ES\ /E /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

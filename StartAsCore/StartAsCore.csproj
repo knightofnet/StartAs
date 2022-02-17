@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="business\CmdArgsParser.cs" />
     <Compile Include="constant\CmdArgsOptions.cs" />
+    <Compile Include="constant\CommonCst.cs" />
     <Compile Include="constant\SpecConstant.cs" />
     <Compile Include="dto\AppArgs.cs" />
     <Compile Include="dto\AuthentFile.cs" />
