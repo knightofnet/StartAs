@@ -19,24 +19,24 @@ namespace StartAsCmd
     {
         internal const string ArgChar = "-";
 
-#if DEBUG
-        private static readonly Logger Log = new Logger("log.log", Logger.LogLvl.DEBUG, Logger.LogLvl.DEBUG, "1Mo");
-#else
-        private static readonly Logger Log = new Logger("log.log", Logger.LogLvl.ERROR, Logger.LogLvl.ERROR, "1Mo");
-#endif
+        private static Logger _log = null;
 
-        private static readonly string AppDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "StartAs");
+        private static readonly string CommonAppDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "StartAs");
+        private static readonly string LocalAppDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StartAs");
 
 
         static void Main(string[] args)
         {
-
+            InitLog();
             try
             {
-                if (!Directory.Exists(AppDataDir))
+                _log.Debug("Step 0 - Start");
+
+                if (!Directory.Exists(CommonAppDataDir))
                 {
-                    Directory.CreateDirectory(AppDataDir);
+                    Directory.CreateDirectory(CommonAppDataDir);
                 }
+
 
                 AppArgs appArgs = ParseAppArgs(args);
 
@@ -44,18 +44,44 @@ namespace StartAsCmd
 
                 if (aFile == null) throw new Exception("Empty aFile");
 
-                Log.Debug("Step 3 - Verify conditions to run");
+                _log.Debug("Step 3 - Verify conditions to run");
                 VerifBeforeStart(aFile, appArgs.SecuredPinStart);
 
-                Log.Debug("Step 4 - Run sub-process");
-                RunCert(aFile, appArgs);
+                _log.Debug("Step 4 - Run sub-process");
+                Environment.Exit(RunCert(aFile, appArgs));
 
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                _log.Error(ex.Message);
 #if DEBUG
-                Log.Error(ex.StackTrace);
+                _log.Error(ex.StackTrace);
+#endif
+                Environment.Exit(1);
+
+            }
+        }
+
+        private static void InitLog()
+        {
+            try
+            {
+                if (!Directory.Exists(LocalAppDataDir))
+                {
+                    Directory.CreateDirectory(LocalAppDataDir);
+                }
+#if DEBUG
+                _log = new Logger(Path.Combine(LocalAppDataDir, "log.log"), Logger.LogLvl.DEBUG,
+                    Logger.LogLvl.DEBUG, "1Mo");
+#else
+            _log = new Logger(Path.Combine(LocalAppDataDir, "log.log"), Logger.LogLvl.ERROR, Logger.LogLvl.ERROR, "1Mo")
+#endif
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+#if DEBUG
+                Console.WriteLine(ex.StackTrace);
 #endif
                 Environment.Exit(1);
 
@@ -67,7 +93,7 @@ namespace StartAsCmd
             AuthentFile aFile = null;
             try
             {
-                Log.Debug("Step 2 - Uncrypt authentification file");
+                _log.Debug("Step 2 - Uncrypt authentification file");
                 aFile = AuthentFileUtils.CryptAuthenDtoFromFile(appArgs.AuthentFilepath);
             }
             catch (Exception ex)
@@ -115,7 +141,7 @@ namespace StartAsCmd
             }
         }
 
-        private static void RunCert(AuthentFile aFile, AppArgs appArgs)
+        private static int RunCert(AuthentFile aFile, AppArgs appArgs)
         {
             /*
              Here, we will prepare the launch of a process. Two steps: either StartAsCmd must be
@@ -128,12 +154,12 @@ namespace StartAsCmd
             ProcessStartInfo psi;
             if (!appArgs.RunnedWithProfile)
             {
-                Log.Debug("Prepare run profil");
+                _log.Debug("Prepare run profil");
                 psi = PrepareRunWithProfile(aFile, appArgs);
             }
             else
             {
-                Log.Debug("Prepare run as");
+                _log.Debug("Prepare run as");
 
                 psi = new ProcessStartInfo()
                 {
@@ -144,7 +170,12 @@ namespace StartAsCmd
                     Arguments = aFile.Arguments,
                     WindowStyle = aFile.WindowStyleToLaunch,
                 };
-
+                _log.Debug($"FileName:{psi.FileName}, " +
+                           $"UseShellExecute={psi.UseShellExecute}, " +
+                           $"Verb={psi.Verb}, " +
+                           $"Arguments={psi.Arguments}, " +
+                           $"UseShellExecute={psi.UseShellExecute}, " +
+                           $"WindowStyle={psi.WindowStyle}");
                 mode = 1;
             }
 
@@ -160,7 +191,11 @@ namespace StartAsCmd
             {
                 FileInfo fAuthentTemp = new FileInfo(appArgs.TmpAuthentFilepath);
                 fAuthentTemp.Delete();
-            } 
+
+                return p.ExitCode;
+            }
+
+            return appArgs.WaitForApp ? p.ExitCode : 0;
         }
 
         /// <summary>
@@ -189,7 +224,7 @@ namespace StartAsCmd
 
             // Creating temporary authentification file
             FileInfo originalAuthenFile = new FileInfo(appArgs.AuthentFilepath);
-            string tmpAuthentFilepath = Path.Combine(AppDataDir, StringUtils.RandomString(16) + originalAuthenFile.Name);
+            string tmpAuthentFilepath = Path.Combine(CommonAppDataDir, StringUtils.RandomString(16) + originalAuthenFile.Name);
 
             aFile.IsAskForPinAtStart = true;
             aFile.PinStart = StringUtils.RandomString(16);
@@ -216,11 +251,11 @@ namespace StartAsCmd
             // the target profile.
             newProcessArgs.Append($" {ArgChar}{CmdArgsOptions.OptRunnedWithProfile.ShortOpt}");
 
-            Log.Debug(newProcessArgs.ToString());
+            _log.Debug(newProcessArgs.ToString());
 
             string startAsFileName = Assembly.GetExecutingAssembly().Location;
             string startAsCmdDir = Path.GetDirectoryName(startAsFileName);
-            if (startAsCmdDir != null)
+            if (appArgs.RunNoWinIfPossible && startAsCmdDir != null)
             {
                 string locNoWin = Path.Combine(startAsCmdDir, "StartAsNoWin.exe");
                 if (File.Exists(locNoWin))
@@ -228,7 +263,6 @@ namespace StartAsCmd
                     startAsFileName = locNoWin;
                 }
             }
-
 
             ProcessStartInfo psi = new ProcessStartInfo()
             {
@@ -238,8 +272,15 @@ namespace StartAsCmd
                 UserName = aFile.Username,
                 Password = aFile.PasswordSecured.ToSecureString(),
                 WindowStyle = ProcessWindowStyle.Hidden,
-                WorkingDirectory = Directory.GetCurrentDirectory()
+                WorkingDirectory = startAsCmdDir ?? Path.GetTempPath()
             };
+            _log.Debug($"FileName:{psi.FileName}, " +
+                       $"UseShellExecute={psi.UseShellExecute}, " +
+                       $"Verb={psi.Verb}, " +
+                       $"Arguments={psi.Arguments}, " +
+                       $"UseShellExecute={psi.UseShellExecute}, " +
+                       $"WindowStyle={psi.WindowStyle}");
+
             return psi;
         }
 
@@ -283,7 +324,7 @@ namespace StartAsCmd
                 if (!aFile.PinStart.Equals(pinInput))
                 {
                     throw new Exception(Properties.Resources.msgExVerifAfWrongPinCode);
-                    
+
                 }
             }
 

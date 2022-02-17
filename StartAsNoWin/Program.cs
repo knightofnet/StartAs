@@ -13,8 +13,11 @@ namespace StartAsNoWin
     {
         static void Main(string[] args)
         {
-            FileInfo mainExe = new FileInfo("StartAsCmd.exe");
-            if (!mainExe.Exists) Environment.Exit(0);
+            String loc = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+
+            FileInfo mainExe = new FileInfo(Path.Combine(Path.GetDirectoryName(loc), "StartAsCmd.exe") );
+            if (!mainExe.Exists) Environment.Exit(1);
 
             ProcessStartInfo pStartInfo = new ProcessStartInfo
             {
