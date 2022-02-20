@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Reflection;
+using System.ServiceProcess;
 using System.Text;
-using System.Threading;
+
 using AryxDevLibrary.extensions;
 using AryxDevLibrary.utils;
 using AryxDevLibrary.utils.cliParser;
 using AryxDevLibrary.utils.logger;
-using StartAsCmd.utils;
+
 using StartAsCore.business;
 using StartAsCore.constant;
 using StartAsCore.dto;
@@ -21,7 +23,7 @@ namespace StartAsCmd
     {
         internal const string ArgChar = "-";
 
-        private static Logger _log = null;
+        private static Logger _log;
 
         private static readonly string CommonAppDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "StartAs");
         private static readonly string LocalAppDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StartAs");
@@ -29,7 +31,15 @@ namespace StartAsCmd
 
         static void Main(string[] args)
         {
-            InitLog();
+            try
+            {
+                InitLog(LocalAppDataDir);
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                InitLog(CommonAppDataDir, StringUtils.RandomString(16)+"-StartAs.log", true);
+            }
+
             try
             {
                 _log.Debug("Step 0 - Start");
@@ -41,6 +51,7 @@ namespace StartAsCmd
 
 
                 AppArgs appArgs = ParseAppArgs(args);
+                VerifyServices();
 
                 AuthentFile aFile = UncryptAuthentFile(appArgs);
 
@@ -55,45 +66,70 @@ namespace StartAsCmd
             }
             catch (Exception ex)
             {
-                _log.Error(ex.Message);
+                if (_log != null)
+                {
+                    _log.Error(ex.Message);
 #if DEBUG
-                _log.Error(ex.StackTrace);
+                    _log.Error(ex.StackTrace);
 #endif
-                Environment.Exit(1);
+                }
+                else
+                {
+                    Console.WriteLine(ex.Message);
+#if DEBUG
+                    Console.WriteLine(ex.StackTrace);
+#endif
+                    File.WriteAllText(Path.Combine(CommonAppDataDir, StringUtils.RandomString(16) + "-error.log"), $"{ex.Message}\n{ex.StackTrace}");
+
+                }
+
+                Environment.Exit(1002);
 
             }
         }
 
-        private static void InitLog()
+
+        private static void InitLog(string dir, string logFilename = "log.log", bool isExit=false)
         {
             try
             {
-                if (!Directory.Exists(LocalAppDataDir))
+                if (!Directory.Exists(dir))
                 {
-                    Directory.CreateDirectory(LocalAppDataDir);
+                    Directory.CreateDirectory(dir);
                 }
 #if DEBUG
-                _log = new Logger(Path.Combine(LocalAppDataDir, "log.log"), Logger.LogLvl.DEBUG,
+                _log = new Logger(Path.Combine(dir, logFilename), Logger.LogLvl.DEBUG,
                     Logger.LogLvl.DEBUG, "1Mo");
 #else
-                _log = new Logger(Path.Combine(LocalAppDataDir, "log.log"), Logger.LogLvl.ERROR, Logger.LogLvl.ERROR,
+                _log = new Logger(Path.Combine(dir, logFilename), Logger.LogLvl.ERROR, Logger.LogLvl.ERROR,
                     "1Mo");
 #endif
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                if (isExit)
+                {
+                    Console.WriteLine(ex.Message);
 #if DEBUG
-                Console.WriteLine(ex.StackTrace);
+                    Console.WriteLine(ex.StackTrace);
 #endif
-                Environment.Exit(1);
+                    File.WriteAllText(Path.Combine(CommonAppDataDir, StringUtils.RandomString(16) + "-StartAs-Error.log"),
+                        $"{ex.GetType()} - {ex.Message}\n{ex.StackTrace}");
+
+                    Environment.Exit(1001);
+                }
+                else
+                {
+                    throw ex;
+                }
+
 
             }
         }
 
         private static AuthentFile UncryptAuthentFile(AppArgs appArgs)
         {
-            AuthentFile aFile = null;
+            AuthentFile aFile;
             try
             {
                 _log.Debug("Step 2 - Uncrypt authentification file");
@@ -188,6 +224,7 @@ namespace StartAsCmd
             if (appArgs.WaitForApp || mode == 0)
             {
                 p.WaitForExit();
+                _log.Debug($"Process ended: {p.ExitCode}");
             }
 
             if (mode == 0)
@@ -266,7 +303,7 @@ namespace StartAsCmd
                     startAsFileName = locNoWin;
                 }
             }
-            
+
             ProcessStartInfo psi = new ProcessStartInfo()
             {
                 FileName = startAsFileName,
@@ -335,6 +372,88 @@ namespace StartAsCmd
 
                 }
             }
+
+        }
+
+        private static void VerifyServices()
+        {
+            _log.Debug("VerifyServices: Wait for secLogon service requested");
+            ServiceController secLogonSvc;
+            try
+            {
+                secLogonSvc = new ServiceController("seclogon");
+            }
+            catch (Exception ex)
+            {
+                secLogonSvc = null;
+                _log.Debug("VerifyServices: Create ServiceController for secLogon service failed - proceeding...");
+
+                throw ex;
+            }
+
+            
+                //Sanity check for existance of TV service
+                ServiceControllerStatus status = ServiceControllerStatus.Stopped;
+                try
+                {
+                    status = secLogonSvc.Status;
+                }
+                catch (Exception ex)
+                {
+                    _log.Debug("VerifyServices: Failed to retrieve secLogon service status");
+                    secLogonSvc.Close();
+                    secLogonSvc = null;
+
+                    throw ex;
+                }
+
+
+            _log.Debug("VerifyServices: secLogon service found. Checking status...");
+
+            if (secLogonSvc.Status == ServiceControllerStatus.StartPending || secLogonSvc.Status == ServiceControllerStatus.Stopped)
+            {
+                switch (secLogonSvc.Status)
+                {
+                    case ServiceControllerStatus.StartPending:
+                        _log.Info("VerifyServices: secLogon service start is pending. Waiting...");
+                        break;
+                    case ServiceControllerStatus.Stopped:
+                        _log.Info("VerifyServices: secLogon service is stopped, so we try start it...");
+                        try
+                        {
+                            secLogonSvc.Start();
+                        }
+                        catch (Exception ex)
+                        {
+                            _log.Info("secLogon seems to be already starting up.");
+                            //throw ex;
+
+                        }
+
+                        break;
+                }
+
+                try
+                {
+                    secLogonSvc.WaitForStatus(ServiceControllerStatus.Running, new TimeSpan(0, 0, 45));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+
+                if (secLogonSvc.Status == ServiceControllerStatus.Running)
+                {
+                    _log.Debug("VerifyServices: The secLogon service has started successfully.");
+                }
+                else
+                {
+                    _log.Error("VerifyServices: Startup of the secLogon service failed - current status: {0}", secLogonSvc.Status.ToString());
+                }
+            }
+            _log.Debug("VerifyServices: secLogon service is in status {0} - proceeding...", secLogonSvc.Status.ToString());
+            secLogonSvc.Close();
 
         }
     }
