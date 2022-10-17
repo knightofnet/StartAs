@@ -207,14 +207,15 @@ namespace StartAsCmd
                     Verb = "runas",
                     WorkingDirectory = aFile.WorkingDirectory,
                     Arguments = aFile.Arguments,
-                    WindowStyle = aFile.WindowStyleToLaunch,
+                    WindowStyle = aFile.WindowStyleToLaunch
                 };
                 _log.Debug($"FileName:{psi.FileName}, " +
                            $"UseShellExecute={psi.UseShellExecute}, " +
                            $"Verb={psi.Verb}, " +
                            $"Arguments={psi.Arguments}, " +
                            $"UseShellExecute={psi.UseShellExecute}, " +
-                           $"WindowStyle={psi.WindowStyle}");
+                           $"WindowStyle={psi.WindowStyle}, " +
+                           $"WorkingDirectory={psi.WorkingDirectory}");
                 mode = 1;
             }
 
