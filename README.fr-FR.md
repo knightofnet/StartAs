@@ -96,13 +96,13 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 
 Cette application est une alternative à une autre application déjà existante, mais "Start As" est open-source, gratuite et sans fenêtres gênantes au lancement.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 ### Built With
 
 * [AryxDevLibrary (by me)](https://www.nuget.org/packages/AryxDevLibrary/)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 ### How it works
 
@@ -126,72 +126,75 @@ En enregistrant le mot de passe dans un fichier (nommé "fichier d'authentificat
 
 ### Menace potentielle sur la sécurité
 
-For security reasons, it is important that regular Windows users use a session with limited rights, as well as a session with administrator rights. Indeed, for a regularly use, a standard user does not need administrator rights and can ask for an elevation of privileges during installations. Linux, Android or iOs distributions work on the same principle. This precaution won't prevent or mitigate all malware infections. Some malware can "escalate" its system privileges and give itself powers that a limited user doesn't have. But regular, run-of-the-mill malware, which is what most people face most of the time, doesn't do that.
+Pour des raisons de sécurité, il est important que les utilisateurs réguliers de Windows utilisent une session avec des droits limités, ainsi qu'une session avec des droits d'administrateur. En effet, pour une utilisation régulière, un utilisateur standard n'a pas besoin des droits d'administrateur et peut demander une élévation de privilèges lors des installations (ou lorsque cela est nécessaire). Les distributions Linux, Android ou iOs fonctionnent sur le même principe. Cette précaution ne permettra pas de prévenir ou d'atténuer toutes les infections par des logiciels malveillants, en effet certains logiciels malveillants peuvent "élever" leurs privilèges système et se donner des pouvoirs qu'un utilisateur limité n'a pas. Mais les logiciels malveillants ordinaires, qui sont ceux auxquels la plupart des gens sont confrontés la plupart du temps, ne font pas cela.
 
-Read this article for more details : [Protect your computer with this one simple trick, TomsGuide.com, Paul Wagenseil, published March 20, 2019](https://www.tomsguide.com/us/limited-account-benefits,news-25682.html).
+Lisez cet article pour plus de détails : [Protect your computer with this one simple trick, TomsGuide.com, Paul Wagenseil, publié le 20 mars 2019](https://www.tomsguide.com/us/limited-account-benefits,news-25682.html).
 
-Based on this, "Start As" can make it easier to start applications as an administrator. Using a web browser can be risky in these conditions: viruses, malware or other security risks are more likely to corrupt the use of your computer. Preferably run browsers with a limited account.
+Sur cette base, "StartAs" peut faciliter le lancement d'applications en tant qu'administrateur. 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+!! Attention !! : l'utilisation d'un navigateur web peut être risquée dans ces conditions : les virus, malwares ou autres risques de sécurité sont plus susceptibles de corrompre l'utilisation de votre ordinateur. Exécutez de préférence les navigateurs avec un compte limité.
+
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Avant-propos
 
-To get a local copy up and running follow these simple example steps.
+Pour installer "StartAs" et le démarrer, suivez ces quelques étapes.
 
-### Prerequisites
+### Pré-requis
 
-This application runs on Microsoft Windows with .net Framework 4.8.
+Cette application fonctionne sous Microsoft Windows avec le .net Framework 4.8.
 
-To test that you have the minimum version required, you can run this Powershell command:
+Pour tester que vous avez la version minimum requise, vous pouvez utiliser cette commande Powershell :
 
-1. Open Powershell by typing ```powershell``` into command prompt, or start menu.
-2. Write the text above and valid with return :
+1. Ouvrez Powershell en écrivant ```powershell``` dans une invite de commandes, ou dans le menu démarrer.
+2. Ecrivez le texte suivant (ou copiez-collez le). Validez avec la touche Entrée du clavier :
 
-```
+``` powershell
 (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full").Release -ge 528040
 ```
 
-3. If you can see ```True```, then everything is OK. Else, download and install .net Framework 4.8 by visiting this site : [download .Net Framework 4.8 Runtime (web-installer)](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net48-web-installer).
+3. Si vous voyez ```True```, alors tout est OK. Sinon, téléchargez et installez .net Framework 4.8  en vous rendez sur ce site: [télécharger .Net Framework 4.8 Runtime (web-installer)](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net48-web-installer).
 
 ### Installation
 
-1. Download latest release [here](https://github.com/knightofnet/StartAs/releases).
-2. Extract the archive in a folder.
+1. Télécharger la dernière verison de StartAs [ici](https://github.com/knightofnet/StartAs/releases).
+2. Décompresez l'archive téléchargés dans le dossier de votre choix.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Utilisation
 
-Two executables come with the downloaded release:
-- ``StartAsCmd.exe``: this is the main executable. It is a bootstraper to start a target application using another profile; Other profile saved in an encrypted authentication file.
-- ``ConfigStartAs.exe`` : this application allows the creation of authentication file.
+Plusieurs fichiers exécutables sont fournit avec la release:
+- ``StartAsCmd.exe`` : C'est l'exécutable principal. Il agit comme un lanceur de l'applicaiton cible, qu'il faut démarrer avec un autre profil; Les informations de connexion à cet autre profil sont sauvegardées dans un fichier d'authentification chiffré.
+- ``ConfigStartAs.exe`` : Cette application va vous permettre la création de fichier d'authentification.
+- ``StartAsNoWin.exe`` : Il s'agit d'un équivalent de ``StartAsCmd.exe`` mais ce dernier se lance sans afficher aucune fenêtre de chargement.
 
-### Create an authentification file
+### Créer un fichier d'authentification
 
-To start an application with another profile, it is necessary to create an authentication file first. This file will contain the connection information, as well as the target application, its working path, and possibly some launch arguments. Everything is encrypted using the SID of the computer and a unique Salt.
+Pour démarrer une application avec un autre profil, il est d'abord nécessaire de créer un fichier d'authentification. Ce dernier contiendra les informaitons de connexion (comme le nom d'utilisateur et le mot de passe), ainsi que le chemin de l'applicaiton cible, son dossier de travail et si besoin les arguments de lancement. Tout est chiffré en se basant sur le SID de l'ordinateur et un sel unique.
 
-``Note: the unique salt is a constant in the . The commit version contains a default value, different from the one used for the releases.``
+``Note: le sel est unique et une constante. Le fichier présent dans le repo GitHub possède une valeur par défaut, différente de celle utilisée par l'application fournit.``
 
-The creation of the authentication file is done by launching the executable 'ConfigStartAs.exe'. A window opens with different text fields that must be valued:
+La création du fichier d'authentification est réalisée à l'aide l'exécutable 'ConfigStartAs.exe'. Dès qu'elle est lancée, une fenêtre s'ouvre avec différents champs textuels qu'il faut compléter afin de permettre la création du fichier d'authentification :
 
-The path of the executable is the path to the file that must be launched with another profile (administrator or other). In the part "Start as", enter the user name and the password of the profile that will be used.
+Le chemin du fichier exécutable cible est le chemin vers le fichier qu'il va falloir démarrera vec un autre profil (administrateur ou un autre). Dans la partie "Démarrer en tant que", entrez le nom d'utilisateur ainsi que le mot de passe associé.
 
-There are some security options that can be activated:
+Quelques options de sécurité supplémentaires sont présentes :
 
-- The authentication file can have a limited validity in time. To do this, check the corresponding box and set an expiration date.
-- It is also possible to perform an integrity test of the target executable file, at the time of launching with the profile of the other user. A SHA1 comparison will then be performed. This can slow down the launch of the application, but it guarantees that the executable is the right one (and not another one, with the same name in the same folder).
-- Finally, it is possible to ask for a PIN code to start the target application. It is a code on 4 to 8 characters, only numbers. Only users with the PIN code will be able to start the target application, but still without knowing the password of the used profile.
+- Le fichier d'authentificaiton peut avoir une date de validité limitée : une date d'expiration. Pour utiliser cela, cochez la case et choisissez la date d'expiration.
+- Il est possible de réaliser un test d'intégrité du fichier cible au moment du lancement avec le profil d'un autre utilisateur. Une comparaison de l'empreinte SHA1 sera alors réalisée. Cela peut ralentir le lancement de l'application cible, mais cela permet de garantir que l'exécutable cible est bien le bon à lancer (et non un fichier qui aurait le même nom, dans le même dossier).
+- Enfin, il est également possible de demander un code PIN pour le démarrage de l'application cible. Il s'agit d'un code de 4 à 8 caractères composé uniquement de chiffres. Seuls les utilisateur davec le code PIN pourront démarrer l'application cible; il s'agit bien sur d'utiliser un code différent de mot de passse de l'utilisateur cible
 
-Once everything is set up, you can click on the "Save" button in the lower part of the window. This will create the authentication file at the address specified in the "Authentication file" text box.
+Quand vous avez terminer de tout paramétrer, cliquez sur le bouton "Enregistrer" dans la partie inférieure de la fenêtre. Cela va créer le fichier d'authentification à l'adresse spécifiée dans le champs textuel "Fichier d'authentification".
 
-This file should be used with the 'StartAsCmd.exe' executable to start the target application.
+Ce fichier créé, pourra être utilisé avec les exécutablee 'StartAsCmd.exe' ou ''StartAsNoWin.exe' afin de démarrer l'application cible.
 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 
 ### Start application with authentification file
@@ -214,7 +217,7 @@ Named arguments:
 - ``-w`` : by default, the target application is started with the saved profile without waiting for it to finish. With this setting, the end of the application is waited for.. Also ``--wait``.
 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 
 <!-- CONTRIBUTING -->
@@ -231,7 +234,7 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 
 
@@ -240,7 +243,7 @@ Don't forget to give the project a star! Thanks again!
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 
 
@@ -251,7 +254,7 @@ Aryx - [@wolfaryx](https://twitter.com/wolfaryx) (wolfaryx [AT] gmail [DOT] com)
 
 Project Link: [https://github.com/knightofnet/StartAs](https://github.com/knightofnet/StartAs)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 
 
@@ -262,7 +265,7 @@ Project Link: [https://github.com/knightofnet/StartAs](https://github.com/knight
 
 *I like to think that programming is like playing with legos: you assemble blocks to form algorithms, functions, classes. At the end, it gives a program! (... and then you just spend your time to make it even better, or you start from the beginning for another one!)*
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
 
 
