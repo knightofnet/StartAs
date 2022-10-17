@@ -60,7 +60,7 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
   <summary>Sommaire</summary>
   <ol>
     <li>
-      <a href="#about-the-project">A propos</a>
+      <a href="#a-propos">A propos</a>
       <ul>
         <li><a href="#built-with">Contruit avec</a></li>
         <li><a href="#potential-security-threat">Menace potentielle liée à la sécurité</a></li>
@@ -88,7 +88,7 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## A propos
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
@@ -191,7 +191,7 @@ Quelques options de sécurité supplémentaires sont présentes :
 
 Quand vous avez terminer de tout paramétrer, cliquez sur le bouton "Enregistrer" dans la partie inférieure de la fenêtre. Cela va créer le fichier d'authentification à l'adresse spécifiée dans le champs textuel "Fichier d'authentification".
 
-Ce fichier créé, pourra être utilisé avec les exécutablee 'StartAsCmd.exe' ou ''StartAsNoWin.exe' afin de démarrer l'application cible.
+Ce fichier créé, pourra être utilisé avec les exécutables 'StartAsCmd.exe' ou ''StartAsNoWin.exe' afin de démarrer l'application cible.
 
 
 <p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
