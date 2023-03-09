@@ -92,9 +92,9 @@ https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/#why-write-do
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-"Start As" est une application Windows conçue pour permettre de lancer des applications en tant qu'un autre utilisateur, tel qu'un utilisateur avec des privilèges d'administrateur, à partir d'un compte standard. Les identifiants sont enregistrés dans un fichier chiffré.
+"Start As" est une application Windows open-source conçue pour faciliter le lancement d'applications en tant qu'un autre utilisateur, tel qu'un utilisateur disposant de privilèges d'administrateur, depuis un compte standard. Les identifiants sont stockés en toute sécurité dans un fichier chiffré.
 
-Cette application est une alternative à une autre application déjà existante, mais "Start As" est open-source, gratuite et sans fenêtres gênantes au lancement.
+Contrairement à d'autres applications similaires, "Start As" est gratuite et ne génère pas de fenêtres gênantes au lancement. Vous pouvez l'utiliser comme alternative fiable et pratique pour lancer des applications avec des droits d'administration, sans avoir à basculer entre différents comptes utilisateur.
 
 <p align="right">(<a href="#top">Retourner au début de la page</a>)</p>
 
@@ -126,7 +126,9 @@ En enregistrant le mot de passe dans un fichier (nommé "fichier d'authentificat
 
 ### Menace potentielle sur la sécurité
 
-Pour des raisons de sécurité, il est important que les utilisateurs réguliers de Windows utilisent une session avec des droits limités, ainsi qu'une session avec des droits d'administrateur. En effet, pour une utilisation régulière, un utilisateur standard n'a pas besoin des droits d'administrateur et peut demander une élévation de privilèges lors des installations (ou lorsque cela est nécessaire). Les distributions Linux, Android ou iOs fonctionnent sur le même principe. Cette précaution ne permettra pas de prévenir ou d'atténuer toutes les infections par des logiciels malveillants, en effet certains logiciels malveillants peuvent "élever" leurs privilèges système et se donner des pouvoirs qu'un utilisateur limité n'a pas. Mais les logiciels malveillants ordinaires, qui sont ceux auxquels la plupart des gens sont confrontés la plupart du temps, ne font pas cela.
+Pour garantir la sécurité de votre ordinateur, il est recommandé que les utilisateurs de Windows utilisent deux sessions différentes : une session limitée et une session avec des droits d'administrateur. De cette manière, les utilisateurs standards n'ont pas besoin de droits d'administrateur pour leurs activités courantes et peuvent demander une élévation de privilèges lorsqu'ils ont besoin de réaliser des actions nécessitant des droits d'administrateur.
+
+Cette approche est similaire à celle utilisée dans les distributions Linux, Android ou iOS. Bien que cela ne garantisse pas une protection complète contre toutes les infections de logiciels malveillants, cette mesure permet de minimiser les risques en cas d'attaque. En effet, la plupart des logiciels malveillants communs ne sont pas capables d'élever leurs privilèges système et ne peuvent donc pas compromettre la sécurité d'un utilisateur limité. Cependant, certains logiciels malveillants sophistiqués peuvent contourner cette mesure de sécurité en exploitant des failles de sécurité ou des vulnérabilités système.
 
 Lisez cet article pour plus de détails : [Protect your computer with this one simple trick, TomsGuide.com, Paul Wagenseil, publié le 20 mars 2019](https://www.tomsguide.com/us/limited-account-benefits,news-25682.html).
 
